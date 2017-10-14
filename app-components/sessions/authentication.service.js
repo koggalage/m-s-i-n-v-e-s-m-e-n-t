@@ -14,7 +14,7 @@
             userName : ""
         };
         
-        debugger;
+        //debugger;
         var url = __env.ApiPath(domain, '/token');
 
         var _login = function(loginData){

@@ -9,11 +9,17 @@
 
     function ContractsService($http)
     {
-        var serviceBase = 'http://localhost:53438/api/Broker';
+        var serviceBase = 'http://localhost:53438/api/Contract';
         
         this.createContract = function(contract){
             return $http.post(serviceBase + '/CreateContract', contract);
         };
+
+
+        this.getCustomerDetails = function(){
+            return $http.get(serviceBase + '/GetCustomerDetails');
+        }
+
     }
 
 })();

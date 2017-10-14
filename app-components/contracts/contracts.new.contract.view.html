@@ -18,6 +18,14 @@
                             <div role="form">
 
                                 <div class="form-group">
+                                    <label>Customer</label>
+                                    <input type="text" name="country" id="country" ng-model="country" ng-keyup="complete(country)" class="form-control" />
+                                    <ul class="list-group" ng-model="hidethis" ng-hide="hidethis">
+                                        <li class="list-group-item" ng-repeat="countrydata in filterCountry" ng-click="fillTextbox(countrydata)">{{countrydata}}</li>
+                                    </ul>
+                                </div>
+
+                                <div class="form-group">
                                     <label>Amount</label>
                                     <input class="form-control" placeholder="2000000">
                                 </div>
@@ -25,7 +33,7 @@
                                 <div class="form-group">
                                     <label>No of installments</label>
                                     <input class="form-control" placeholder="12">
-                                </div>                                     
+                                </div>
 
                                 <div class="form-group">
                                     <label>Installment</label>
@@ -49,8 +57,8 @@
                                             <input type="radio" name="optionsRadios" id="optionsRadios3" value="Land">Land
                                         </label>
                                     </div>
-                                </div>                                     
-                               
+                                </div>
+
                                 <div class="form-group">
                                     <label>Vehicle No</label>
                                     <input class="form-control" placeholder="AD-3456">
@@ -144,9 +152,12 @@
             </div>
         </div>
 
+
         <div id="addNewBroker" class="modal fade" role="dialog" ng-controller="AddNewBrokerController as addBroker" ng-init="addBroker.onLoad()">
  
             <div class="modal-dialog">
+
+
                
                 <div class="modal-content">
                     <div class="modal-header">
