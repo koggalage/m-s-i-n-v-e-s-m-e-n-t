@@ -60,6 +60,12 @@
                 controller:'ContractsController'
             })
 
+            .state('app.instalment',{
+                url: '/instalment',
+                templateUrl: '/app-components/instalments/installments.view.html',
+                controller:'InstalmentController'
+            })
+
     }
 
     

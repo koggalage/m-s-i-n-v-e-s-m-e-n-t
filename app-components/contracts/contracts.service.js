@@ -15,11 +15,9 @@
             return $http.post(serviceBase + '/CreateContract', contract);
         };
 
-
         this.getCustomerDetails = function(){
             return $http.get(serviceBase + '/GetCustomerDetails');
         }
-
     }
 
 })();
