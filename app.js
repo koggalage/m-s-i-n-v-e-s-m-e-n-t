@@ -2,18 +2,32 @@
 
     'use strict'
 
-    var module = angular.module('app',
+    var env = {};
+    
+    // Import variables if present (from env.js)
+    if(window){  
+        Object.assign(env, window.__env);
+    }
+
+    var app = angular.module('app',
                                     [
-                                        'ui.router'
+                                        'ui.router', 'LocalStorageModule'
                                     ]
                                 )
                     .config(config)
-                    .run(run)
+     
+    app.constant('__env', env);
+
+    app.constant('_',
+        window._
+    );                    
 
     config.$inject = ['$stateProvider', '$urlRouterProvider'];
     function config($stateProvider, $urlRouterProvider){
-
-        $urlRouterProvider.otherwise('/app');
+        debugger;
+        //$urlRouterProvider.otherwise('/app');
+        $urlRouterProvider.otherwise('/sessions/new');
+        
 
         $stateProvider
             .state('login',{
@@ -48,30 +62,44 @@
 
     }
 
-    run.$inject = ['$rootScope', '$location', '$http'];
-    function run($rootScope, $location, $http){
+    
+    app.config(function ($httpProvider) {
+        $httpProvider.interceptors.push('authInterceptorService');
+        $httpProvider.defaults.useXDomain = true;
+        delete $httpProvider.defaults.headers.common['X-Requested-With'];
+    });    
 
-        $rootScope.isUserLoggedIn = function () {
-            if ($rootScope.globals.currentUser) {
-                return true;
-            }
-            else {
-                return false;
-            }
-        }
+    // run.$inject = ['$rootScope', '$location', '$http', 'AuthenticationService'];
+    // function run($rootScope, $location, $http, AuthenticationService){
+    //     debugger;
+    //     // $rootScope.isUserLoggedIn = function () {
+    //     //     if ($rootScope.globals.currentUser) {
+    //     //         return true;
+    //     //     }
+    //     //     else {
+    //     //         return false;
+    //     //     }
+    //     // }
 
-        $rootScope.$on('$locationChangeStart', function (event, next, current) {
-            //start loading bar with white background for state changes 
-            //$rootScope.loadingBarChange();
+    //     // $rootScope.$on('$locationChangeStart', function (event, next, current) {
+    //     //     //start loading bar with white background for state changes 
+    //     //     //$rootScope.loadingBarChange();
 
-            // redirect to login page if not logged in and trying to access a restricted page
-           // var restrictedPage = $.inArray($location.path(), ['/sessions/new', '/register', '/', '']) === -1;
-            //var loggedIn = $rootScope.globals.currentUser;
-            //if (restrictedPage && !loggedIn) {
-                //$location.path('/app');
-            //}
-        });
+    //     //     // redirect to login page if not logged in and trying to access a restricted page
+    //     //    // var restrictedPage = $.inArray($location.path(), ['/sessions/new', '/register', '/', '']) === -1;
+    //     //     //var loggedIn = $rootScope.globals.currentUser;
+    //     //     //if (restrictedPage && !loggedIn) {
+    //     //         //$location.path('/app');
+    //     //     //}
+    //     // });
 
-    }
+    //     $location.path('/sessions/new');
+    //     AuthenticationService.fillAuthData();
+
+    // }
+
+    app.run(['AuthenticationService', function (authService) {
+        authService.fillAuthData();
+    }]);
 
 })();

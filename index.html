@@ -6,7 +6,8 @@
         <link href="app-content/metisMenu/metisMenu.min.css" rel="stylesheet">
         <link href="app-content/sb-admin-2.min.css" rel="stylesheet">
         <link href="app-content/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-        <link href="app-content/morris.css" rel="stylesheet">
+        <!-- <link href="app-content/morris.css" rel="stylesheet"> -->
+        <link href="app-content/loading-bar.css" rel="stylesheet">
 
     </head>
 
@@ -24,8 +25,11 @@
         <script src="app-scripts/angular-ui-router.js"></script>
 
         <script src="app-scripts/raphael.min.js"></script>
-        <script src="app-scripts/morris.min.js"></script>
-        <script src="app-scripts/morris-data.js"></script>
+        <!-- <script src="app-scripts/morris.min.js"></script>
+        <script src="app-scripts/morris-data.js"></script> -->
+        <script src="app-scripts/loading-bar.js"></script>
+        <script src="app-scripts/angular-local-storage.min.js"></script>
+        <script src="env.js"></script>
 
         <script src="app.js"></script>
 
@@ -35,8 +39,18 @@
         <script src="app-components/app/app.controller.js"></script>
         <script src="app-components/customers/cutomer.controller.js"></script>
         <script src="app-components/contracts/contracts.controller.js"></script>
+        <script src="app-factory/domain.factory.js"></script>
 
         <!--End: Controller-->
+
+        <!-- Start : Services-->
+        
+        <script src="app-components/sessions/authentication.service.js"></script>
+        <script src="app-components/sessions/auth.interceptor.service.js"></script>
+
+        <script src="app-components/customers/customer.service.js"></script>
+
+         <!--End: Services-->
 
     </body>
 
