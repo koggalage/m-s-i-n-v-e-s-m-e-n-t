@@ -76,7 +76,7 @@
                                     <input class="form-control" placeholder="A.G Smith">
                                 </div>
 
-                                <button type="submit" class="btn btn-default">Create contract</button>
+                                <button type="button" class="btn btn-default">Create contract</button>
 
                             </div>
 
@@ -144,11 +144,9 @@
             </div>
         </div>
 
-        <div id="addNewBroker" class="modal fade" role="dialog" ng-include="">
-
-            
-
-            <!-- <div class="modal-dialog">
+        <div id="addNewBroker" class="modal fade" role="dialog" ng-controller="AddNewBrokerController as addBroker" ng-init="addBroker.onLoad()">
+ 
+            <div class="modal-dialog">
                
                 <div class="modal-content">
                     <div class="modal-header">
@@ -188,7 +186,7 @@
                                 <input class="form-control" placeholder="Mechanic">
                             </div>
 
-                            <button type="submit" class="btn btn-default">Add new gurenter</button>
+                            <button type="button" class="btn btn-default" ng-click="addBroker.brokers._createBroker()">Add new broker</button>
 
                         </div>
 
@@ -198,7 +196,7 @@
                     </div>
                 </div>
 
-            </div> -->
+            </div>
 
         </div>
 

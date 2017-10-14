@@ -11,8 +11,8 @@
     {
         var serviceBase = 'http://localhost:53438/api/Broker';
         
-        this.createBroker = function(customer){
-            return $http.post(serviceBase + '/CreateBroker', customer);
+        this.createBroker = function(broker){
+            return $http.post(serviceBase + '/CreateBroker', broker);
         };
 
     }
