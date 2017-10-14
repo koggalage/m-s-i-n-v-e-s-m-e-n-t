@@ -7,9 +7,22 @@
 
     ContractsController.$inject = ['$scope'];
     function ContractsController($scope){
-        $scope.message = 'Hello';
+        
+        var vm = {};
+
+        function getContractExtender()
+        {
+            var obj = { contract : {} };
+
+            return obj;
+        }
 
 
+        function onLoad()
+        {
+            vm = $scope;
+            
+        }
     }
 
 })();

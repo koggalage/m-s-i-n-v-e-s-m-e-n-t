@@ -14,7 +14,6 @@
         //     startDate: '-3d'
         // });
 
-
         function getCustomerExtender(){
             var obj = { customer : {} };
 
@@ -24,7 +23,6 @@
 
             return obj;
         }
-
 
         function CreateCustomer(customer){
             CustomerService.createCustomer(customer).then(function(result){
@@ -38,7 +36,6 @@
             vm = $scope;
             vm.customers = angular.extend(vm.customers || {}, getCustomerExtender());
         }
-
 
         onLoad();
     }
