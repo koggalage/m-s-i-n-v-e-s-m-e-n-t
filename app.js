@@ -41,9 +41,11 @@
                 views: {
                     '@':{
                         templateUrl: '/app-components/app/app.view.html',
+                        controller: 'AppController'
                     },
                     'header@app':{
-                        templateUrl:'/app-components/common/header.html'
+                        templateUrl:'/app-components/common/header.html',
+                        controller: 'TopPannelController'
                     }
                 }
             })
@@ -64,6 +66,12 @@
                 url: '/instalment',
                 templateUrl: '/app-components/instalments/installments.view.html',
                 controller:'InstalmentController'
+            })
+
+            .state('app.contract_instalment_details',{
+                url: '/contract_instalment_details/:contractId',
+                templateUrl:'/app-components/instalments/instalments.details.view.html',
+                controller:'InstalmentDetailController'
             })
 
     }

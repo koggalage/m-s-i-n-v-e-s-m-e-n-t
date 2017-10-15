@@ -2,13 +2,15 @@
     'use strict'
 
     angular
-        .module('app')
-        .controller('AppController', AppController);
+    .module('app')
+    .controller('TopPannelController', TopPannelController);
 
-    AppController.$inject = ['$scope', 'ContractsService'];
+    TopPannelController.$inject = ['$scope', 'ContractsService', '$location'];
 
-    function AppController($scope, ContractsService){
-        
+    function TopPannelController($scope, ContractsService, $location){
+
+        $scope.searchString = '';
+
         $scope.getCustomerContracts = function(){
             ContractsService.getContract($scope.searchString).then(function(result){
                 $scope.contractsDetails = [{ Id : '1234', Name : 'Qwerty', Amount : '2345' }]
@@ -20,6 +22,7 @@
 
             });
         }
-    }
+
+    };
 
 })();

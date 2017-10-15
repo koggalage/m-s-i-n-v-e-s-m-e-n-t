@@ -1,0 +1,27 @@
+<div class="container-fluid">
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Due date</th>
+                <th>Paid amount</th>
+                <th>Unsettle amount</th>
+                <th>Late payment dates</th>
+                <th>Fine</th>
+                <th>Paid date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in instalments">
+                <th scope="row">{{ item.DueDate }}</th>
+                <td>{{ item.PaidAmount }}</td>
+                <td>{{ item.UnsettleAmount }}</td>
+                <td>{{ item.LateDays }}</td>
+                <td>{{ item.Fine }}</td>
+                <td>{{ item.PaidDate }}</td>
+            </tr>
+
+        </tbody>
+    </table>
+
+</div>

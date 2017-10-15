@@ -14,6 +14,10 @@
         this.createInstalment = function(instalment){
             return $http.post(serviceBase + '/CreateInstalment', instalment);
         };
+
+        this.getInstallmentsForContract = function(contractId){
+            return $http.get(serviceBase + '/GetInstalmentsForContract?contractId=' + contractId);
+        };
     }
 
 })();

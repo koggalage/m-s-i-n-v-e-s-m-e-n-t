@@ -8,8 +8,18 @@
 
         <div id="page-wrapper">
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-9">
                     <h1 class="page-header">Dashboard</h1>
+                </div>
+                <div class="col-lg-3">
+                    <div class="input-group custom-search-form">
+                        <input type="text" class="form-control" ng-model="searchString" placeholder="Search...">
+                        <span class="input-group-btn">
+                                <button class="btn btn-default" type="button" ng-click="getCustomerContracts()">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                    </div>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -108,7 +118,28 @@
             <!-- /.row -->
             <div class="row">
                 <div class="col-lg-8">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-bell fa-fw"></i> Contracts search results
+                        </div>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>NIC</th>
+                                    <th>Name</th>
+                                    <th>Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in contractsDetails">
+                                    <th scope="row"><a href="/#/app/contract_instalment_details/{{ item.Id }}">{{ item.Id }}</a></th>
+                                    <td>{{ item.Name }}</td>
+                                    <td>{{ item.Amount }}</td>
+                                </tr>
 
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 <!-- /.col-lg-8 -->
 

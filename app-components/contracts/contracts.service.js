@@ -18,6 +18,10 @@
         this.getCustomerDetails = function(){
             return $http.get(serviceBase + '/GetCustomerDetails');
         }
+
+        this.getContract = function(searchString){
+            return $http.get(serviceBase + '/GetContracts?searchString=' + searchString);
+        }
     }
 
 })();
