@@ -18,12 +18,12 @@
                             <div role="form">
 
                                 <div class="form-group">
-                                    <label>Customer</label>
-                                    <input type="text" name="nicCustomer" id="nicCustomer" ng-model="nicCustomer" ng-blur="completeCustomerNICs(nicCustomer)" ng-keyup="completeCustomerNICs(nicCustomer)" class="form-control" />
+                                    <label>Customer NIC</label>
+                                    <input type="text" name="nicCustomer" id="nicCustomer" ng-model="nicCustomer" ng-keyup="completeCustomerNICs(nicCustomer)" class="form-control" />
                                     <ul class="list-group" ng-model="nicCustomer" ng-hide="hideCustomerNICs" ng-mouseleave="hideList()">
                                         <li class="list-group-item" ng-repeat="nicdataCustomer in filterNICsCustomer" ng-click="fillTextboxCustomerNICs(nicdataCustomer)">{{nicdataCustomer}}</li>
                                     </ul>
-                                    <span class="text-danger" ng-show="showCustomerNotExistWarning">This broker not exist!</span>
+                                    <span class="text-danger" ng-show="showCustomerNotExistWarning">This Customer not exist!</span>
                                 </div>
 
                                 <div class="form-group">
@@ -87,7 +87,7 @@
                                         <li class="list-group-item" ng-repeat="nicdataBroker in filterNICsBroker" ng-click="fillTextboxBrokerNICs(nicdataBroker)">{{nicdataBroker}}</li>
                                     </ul>
 
-                                    <span class="text-danger" ng-show="showBrokerNotExistWarning">This broker not exist!</span>
+                                    <span class="text-danger" ng-show="showBrokerNotExistWarning">This Broker not exist!</span>
                                 </div>
 
                                 <button type="button" ng-click="contracts._createContract()" class="btn btn-default">Create contract</button>

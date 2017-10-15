@@ -22,9 +22,17 @@
         this.getContract = function(searchString){
             return $http.get(serviceBase + '/GetContracts?searchString=' + searchString);
         }
-
+        
         this.getBrokerDetails = function(){
             return $http.get(serviceBase + '/LoadBrokerDetails');
+        }
+        
+        this.getCustomersForOpenContracts = function(){
+            return $http.get(serviceBase + '/GetCustomersForOpenContracts');
+        }
+
+        this.getVehicleNoByCustomerId = function(customerId){
+            return $http.get(serviceBase + '/GetVehicleNoByCustomerId?customerId='+ customerId);
         }
 
     }
