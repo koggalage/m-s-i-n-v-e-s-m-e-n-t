@@ -8,18 +8,37 @@
     AppController.$inject = ['$scope', 'ContractsService'];
 
     function AppController($scope, ContractsService){
-        
-        $scope.getCustomerContracts = function(){
-            ContractsService.getContract($scope.searchString).then(function(result){
-                $scope.contractsDetails = [{ Id : '1234', Name : 'Qwerty', Amount : '2345' }]
-                //if(!result.data)
-                //{
-                   // $location.path('/sessions/new');
-                //}
+
+        var vm = {};
+
+        function getCustomerContracts(){
+            ContractsService.getContract(vm.contractsIntalments.searchString).then(function(result){
+                vm.contractsIntalments.contractsDetails = result.data;
             },function(error){
 
             });
         }
+
+
+
+        function getContractExtender() {
+            var obj = { };
+
+            obj.searchString = '';
+
+            obj._getCustomerContracts = function () {
+                getCustomerContracts(obj.searchString);
+            };
+
+            return obj;
+        }
+
+        function onLoad(){
+            vm = $scope;
+            vm.contractsIntalments = angular.extend(vm.contractsIntalments || {}, getContractExtender());           
+        }
+
+        onLoad();
     }
 
 })();

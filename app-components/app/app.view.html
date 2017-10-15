@@ -13,9 +13,9 @@
                 </div>
                 <div class="col-lg-3">
                     <div class="input-group custom-search-form">
-                        <input type="text" class="form-control" ng-model="searchString" placeholder="Search...">
+                        <input type="text" class="form-control" ng-model="contractsIntalments.searchString" placeholder="Search...">
                         <span class="input-group-btn">
-                                <button class="btn btn-default" type="button" ng-click="getCustomerContracts()">
+                                <button class="btn btn-default" type="button" ng-click="contractsIntalments._getCustomerContracts()">
                                     <i class="fa fa-search"></i>
                                 </button>
                             </span>
@@ -127,14 +127,14 @@
                                 <tr>
                                     <th>NIC</th>
                                     <th>Name</th>
-                                    <th>Amount</th>
+                                    <th>Vehicle</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="item in contractsDetails">
-                                    <th scope="row"><a href="/#/app/contract_instalment_details/{{ item.Id }}">{{ item.Id }}</a></th>
-                                    <td>{{ item.Name }}</td>
-                                    <td>{{ item.Amount }}</td>
+                                <tr ng-repeat="item in contractsIntalments.contractsDetails">
+                                    <th scope="row"><a href="/#/app/contract_instalment_details/{{ item.contractId }}">{{ item.nic }}</a></th>
+                                    <td>{{ item.name }}</td>
+                                    <td>{{ item.vehicleNumber }}</td>
                                 </tr>
 
                             </tbody>

@@ -10,9 +10,9 @@
        
         var vm = {};
 
-        // $('.datepicker').datepicker({
-        //     startDate: '-3d'
-        // });
+        $( function() {
+            $( "#createdOn" ).datepicker();
+        });
 
         function getCustomerExtender(){
             var obj = { customer : {} };
@@ -24,11 +24,13 @@
             return obj;
         }
 
-        function CreateCustomer(customer){
-            CustomerService.createCustomer(customer).then(function(result){
-                
-            }, function(error){
-
+        function CreateCustomer(customer) {
+            CustomerService.createCustomer(customer).then(function (result) {
+                if (result.data == true) {
+                    toastr.success('Customer created successfully', { timeOut: 3000 });
+                }
+            }, function (error) {
+                toastr.error('Failed creating customer', { timeOut: 3000 });
             });
         }
 

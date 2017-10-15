@@ -20,7 +20,7 @@
 
                                 <div class="input-append date form-group">
                                     <label>Due date</label>
-                                    <input class="form-control" ng-model="instalments.instalment.DueDate" size="16" type="text" value="12-02-2012">
+                                    <input class="form-control" ng-model="instalments.instalment.DueDate" size="16" id="instalmentDueDate" type="text" placeholder="2017-02-01">
                                 </div>
 
                                 <div class="form-group">
@@ -30,23 +30,24 @@
 
                                 <div class="form-group" id="dp3">
                                     <label>Unsettle amount</label>
-                                    <input class="form-control" ng-model="instalments.instalment.UnsettleAmount" size="16" type="text">
+                                    <input class="form-control" ng-model="instalments.instalment.UnsettleAmount" placeholder="0" size="16" type="text">
                                 </div>
 
                                 <div class="form-group">
                                     <label>Late payment dates</label>
-                                    <input class="form-control" ng-model="instalments.instalment.LateDays" size="16" type="text">
+                                    <input class="form-control" ng-model="instalments.instalment.LateDays" placeholder="0" size="16" type="text">
                                 </div>
 
                                 <div class="form-group">
                                     <label>Fine</label>
-                                    <input class="form-control" ng-model="instalments.instalment.Fine" size="16" type="text">
+                                    <input class="form-control" ng-model="instalments.instalment.Fine" placeholder="0" size="16" type="text">
                                 </div>
 
                                 <div class="input-append date form-group">
                                     <label>Paid date</label>
-                                    <input class="form-control" ng-model="instalments.instalment.PaidDate" size="16" type="text" value="12-02-2012" data-date-format="dd-mm-yyyy">
+                                    <input class="form-control" ng-model="instalments.instalment.PaidDate" placeholder="2017-01-01" size="16" type="text" id="instalmentCreatedOn">
                                 </div>
+
 
                                 <button type="button" ng-click="instalments._createInstalment()" class="btn btn-default">Save</button>
 
