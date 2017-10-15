@@ -27,6 +27,10 @@
             return $http.get(serviceBase + '/LoadBrokerDetails');
         }
 
+        this.getActiveContracts = function(){
+            return $http.get(serviceBase + '/GetActiveContracts');
+        }
+
     }
 
 })();

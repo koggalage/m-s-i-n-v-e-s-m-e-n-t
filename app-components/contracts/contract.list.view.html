@@ -1,0 +1,33 @@
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Active contracts</h1>
+            </div>
+            <!-- /.col-lg-12 -->
+
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Vehicle No/ Property</th>
+                        <th>Amount</th>                      
+                        <th>Customer</th>
+                        <th>Contact No</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in contracts.contractData">                      
+                        <td scope="row">{{ item.vehicleNo }}</td>
+                        <th >{{ item.amount }}</th>
+                        <td>{{ item.customerName }}</td>
+                        <td>{{ item.contractNo }}</td>
+                    </tr>
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>

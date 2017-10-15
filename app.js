@@ -74,6 +74,12 @@
                 controller:'InstalmentDetailController'
             })
 
+            .state('app.active_contracts',{
+                url:'/active_contracts',
+                templateUrl:'/app-components/contracts/contract.list.view.html',
+                controller: 'ContractListController'
+            })
+
     }
 
     
