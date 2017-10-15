@@ -19,49 +19,50 @@
 
                                 <div class="form-group">
                                     <label>Customer</label>
-                                    <input type="text" name="country" id="country" ng-model="country" ng-keyup="complete(country)" class="form-control" />
-                                    <ul class="list-group" ng-model="hidethis" ng-hide="hidethis">
-                                        <li class="list-group-item" ng-repeat="countrydata in filterCountry" ng-click="fillTextbox(countrydata)">{{countrydata}}</li>
+                                    <input type="text" name="nicCustomer" id="nicCustomer" ng-model="nicCustomer" ng-blur="completeCustomerNICs(nicCustomer)" ng-keyup="completeCustomerNICs(nicCustomer)" class="form-control" />
+                                    <ul class="list-group" ng-model="nicCustomer" ng-hide="hideCustomerNICs" ng-mouseleave="hideList()">
+                                        <li class="list-group-item" ng-repeat="nicdataCustomer in filterNICsCustomer" ng-click="fillTextboxCustomerNICs(nicdataCustomer)">{{nicdataCustomer}}</li>
                                     </ul>
+                                    <span class="text-danger" ng-show="showCustomerNotExistWarning">This broker not exist!</span>
                                 </div>
 
                                 <div class="form-group">
                                     <label>Amount</label>
-                                    <input ng-model="contracts." class="form-control" placeholder="2000000">
+                                    <input ng-model="contracts.contract.Amount" class="form-control" placeholder="2000000">
                                 </div>
 
                                 <div class="form-group">
                                     <label>No of installments</label>
-                                    <input class="form-control" placeholder="12">
+                                    <input class="form-control" ng-model="contracts.contract.NoOfInstallments"  placeholder="12">
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Installment</label>
-                                    <input class="form-control" placeholder="120000">
+                                    <label>Monthly Installment</label>
+                                    <input class="form-control" ng-model="contracts.contract.Insallment" placeholder="120000">
                                 </div>
 
                                 <div class="form-group">
                                     <label>Type of </label>
                                     <div class="radio">
                                         <label>
-                                            <input type="radio" name="optionsRadios" id="optionsRadios1" value="Motor bike" checked>Motor bike
+                                            <input type="radio" name="optionsRadios" ng-model="contracts.contract.Type" id="optionsRadios1" value="Motor bike" checked>Motor bike
                                         </label>
                                     </div>
                                     <div class="radio">
                                         <label>
-                                            <input type="radio" name="optionsRadios" id="optionsRadios2" value="Three wheeler">Three wheller
+                                            <input type="radio" name="optionsRadios" ng-model="contracts.contract.Type" id="optionsRadios2" value="Three wheeler">Three wheller
                                         </label>
                                     </div>
                                     <div class="radio">
                                         <label>
-                                            <input type="radio" name="optionsRadios" id="optionsRadios3" value="Land">Land
+                                            <input type="radio" name="optionsRadios" ng-model="contracts.contract.Type" id="optionsRadios3" value="Land">Land
                                         </label>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label>Vehicle No</label>
-                                    <input class="form-control" placeholder="AD-3456">
+                                    <input class="form-control" ng-model="contracts.contract.VehicleNo" placeholder="AD-3456">
                                 </div>
 
                                 <div class="form-group">
@@ -70,8 +71,8 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Name of the guarantor</label>
-                                    <input class="form-control" placeholder="A.G Smith">
+                                    <label>NIC of the guarantor</label>
+                                    <input class="form-control" ng-keyup="" ng-model="contracts.contract.guarantor" placeholder="A.G Smith">
                                 </div>
 
                                 <div class="form-group">
@@ -80,11 +81,16 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Name of the broker</label>
-                                    <input class="form-control" placeholder="A.G Smith">
+                                    <label>NIC of the broker</label>
+                                    <input type="text" name="nicBroker" id="nicBroker" ng-model="nicBroker" ng-keyup="completeBrokerNICs(nicBroker)" class="form-control" />
+                                    <ul class="list-group" ng-model="nicBroker" ng-hide="hideBrokerNICs" ng-mouseleave="hideList()">
+                                        <li class="list-group-item" ng-repeat="nicdataBroker in filterNICsBroker" ng-click="fillTextboxBrokerNICs(nicdataBroker)">{{nicdataBroker}}</li>
+                                    </ul>
+
+                                    <span class="text-danger" ng-show="showBrokerNotExistWarning">This broker not exist!</span>
                                 </div>
 
-                                <button type="button" class="btn btn-default">Create contract</button>
+                                <button type="button" ng-click="contracts._createContract()" class="btn btn-default">Create contract</button>
 
                             </div>
 

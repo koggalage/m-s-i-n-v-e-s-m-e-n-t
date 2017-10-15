@@ -22,6 +22,11 @@
         this.getContract = function(searchString){
             return $http.get(serviceBase + '/GetContracts?searchString=' + searchString);
         }
+
+        this.getBrokerDetails = function(){
+            return $http.get(serviceBase + '/LoadBrokerDetails');
+        }
+
     }
 
 })();

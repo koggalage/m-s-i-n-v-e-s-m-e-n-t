@@ -15,6 +15,10 @@
             return $http.post(serviceBase + '/CreateBroker', broker);
         };
 
+        this.getBrokerExistency = function(brokerNIC){
+            return $http.post(serviceBase + '/GetBrokerExistency?brokerNIC=' + brokerNIC);
+        }
+
     }
 
 })();
