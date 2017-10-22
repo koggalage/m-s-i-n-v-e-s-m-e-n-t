@@ -21,12 +21,12 @@
             </thead>
             <tbody>
                 <tr ng-repeat="item in instalments">
-                    <th scope="row">{{ item.DueDate }}</th>
-                    <td>{{ item.PaidAmount }}</td>
-                    <td>{{ item.UnsettleAmount }}</td>
-                    <td>{{ item.LateDays }}</td>
-                    <td>{{ item.Fine }}</td>
-                    <td>{{ item.PaidDate }}</td>
+                    <th scope="row">{{ item.dueDate | date }}</th>
+                    <td>{{ item.paidAmount }}</td>
+                    <td>{{ item.unsettleAmount }}</td>
+                    <td>{{ item.lateDays }}</td>
+                    <td>{{ item.fine }}</td>
+                    <td>{{ item.paidDate | date }}</td>
                 </tr>
 
             </tbody>
