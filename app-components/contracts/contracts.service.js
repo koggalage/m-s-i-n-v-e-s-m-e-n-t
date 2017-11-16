@@ -39,6 +39,10 @@
             return $http.get(serviceBase + '/GetActiveContracts');
         }
 
+        this.getMonthlyInstallment = function (contract) {
+            return $http.get(serviceBase + '/GetMonthlyInstallment?Amount='+ contract.Amount + '&NoOfInstallments=' + contract.NoOfInstallments);
+        }
+
     }
 
 })();

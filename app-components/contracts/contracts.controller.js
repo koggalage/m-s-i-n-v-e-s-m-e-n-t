@@ -12,6 +12,8 @@
         $scope.showBrokerNotExistWarning = false;
         $scope.showCustomerNotExistWarning = false;
 
+        $scope.isNoOfInstallmentsDisabled = true;
+
 
         function OpenBrokerPopup() {
             ngDialog.open({
@@ -106,6 +108,15 @@
             });
         };
 
+        function GetMonthlyInstallment(contract) {
+            ContractsService.getMonthlyInstallment(contract).then(function (result) {
+                console.log("result getMonthlyInstallment", result);
+                vm.contracts.contract.Insallment = result.data;
+            }, function (error) {
+                toastr.error('Failed to get Monthly Installment!', { timeOut: 3000 });
+            });
+          }
+
         $scope.$watch('nicCustomer', function(newValues, oldValue) {
             if(newValues != oldValue) {
                 GetCustomerExistency(newValues);
@@ -160,11 +171,25 @@
             //$scope.country = '';
         };
 
+        $scope.$watch('contracts.contract.Amount', function(newValues, oldValue) {
+            if(newValues == null || newValues == undefined || newValues == "") {
+                $scope.isNoOfInstallmentsDisabled = true;
+            } else {
+                $scope.isNoOfInstallmentsDisabled = false;
+            }
+          });
+
+          
+
         function getContractExtender() {
             var obj = { contract: {} };
 
             obj._createContract = function () {
                 CreateContract(obj.contract);
+            };
+
+            obj._getMonthlyInstallment = function () {
+                GetMonthlyInstallment(obj.contract);
             };
 
             //obj._addNewBrokerTemplate = '/app-components/brokers/brokers.add.new.broker.view.html';
@@ -183,6 +208,12 @@
         function onLoad() {
             vm = $scope;
             vm.contracts = angular.extend(vm.contracts || {}, getContractExtender());
+
+            $scope.tags = [
+                { text: 'Tag1' },
+                { text: 'Tag2' },
+                { text: 'Tag3' }
+              ];
 
             loadCustomers();
             loadBrokers();

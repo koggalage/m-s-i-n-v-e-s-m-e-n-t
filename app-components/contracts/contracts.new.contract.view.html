@@ -28,17 +28,22 @@
 
                                 <div class="form-group">
                                     <label>Amount</label>
-                                    <input ng-model="contracts.contract.Amount" class="form-control" placeholder="2000000">
+                                    <input ng-model="contracts.contract.Amount" class="form-control" placeholder="Amount">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Document Charge</label>
+                                    <input ng-model="contracts.contract.DocumentCharge" class="form-control" placeholder="Document Charge">
                                 </div>
 
                                 <div class="form-group">
                                     <label>No of installments</label>
-                                    <input class="form-control" ng-model="contracts.contract.NoOfInstallments"  placeholder="12">
+                                    <input ng-disabled="isNoOfInstallmentsDisabled" ng-blur="contracts._getMonthlyInstallment()" class="form-control" ng-model="contracts.contract.NoOfInstallments"  placeholder="No of installment">
                                 </div>
 
                                 <div class="form-group">
                                     <label>Monthly Installment</label>
-                                    <input class="form-control" ng-model="contracts.contract.Insallment" placeholder="120000">
+                                    <input ng-disabled="true" class="form-control" ng-model="contracts.contract.Insallment" placeholder="Monthly Installment">
                                 </div>
 
                                 <div class="form-group">
@@ -68,6 +73,10 @@
                                 <div class="form-group">
                                     <label>Add new guarantor</label>
                                     <a data-toggle="modal" data-target="#addNewGurentor" href="#"><i class="fa fa-plus fa-fw"></i></a>
+                                </div>
+
+                                <div class="form-group">
+                                    <tags ng-model="tags"></tags>
                                 </div>
 
                                 <div class="form-group">
