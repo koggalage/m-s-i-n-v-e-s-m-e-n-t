@@ -15,15 +15,15 @@
         $scope.isNoOfInstallmentsDisabled = true;
 
 
-        function OpenBrokerPopup() {
-            ngDialog.open({
-                template: '/app-components/brokers/brokers.add.new.broker.view.html',
-                controller: 'AddNewBrokerController',
-                scope: $scope,
-                closeByDocument: true,
-                data: {}
-            })
-        }
+        // function OpenBrokerPopup() {
+        //     ngDialog.open({
+        //         template: '/app-components/brokers/brokers.add.new.broker.view.html',
+        //         controller: 'AddNewBrokerController',
+        //         scope: $scope,
+        //         closeByDocument: true,
+        //         data: {}
+        //     })
+        // }
 
         function CreateContract(contract) {
             contract.GuarantorId = "1";
@@ -87,7 +87,7 @@
                 }
                 console.log("$scope.showBrokerNotExistWarning", $scope.showBrokerNotExistWarning);
             }, function () {
-                toastr.error('Failed Loading Customer Broker Existency!', { timeOut: 3000 });
+                toastr.error('Failed Loading Customer Existency!', { timeOut: 3000 });
             });
         };
 
@@ -104,7 +104,7 @@
                 }
                 console.log("$scope.showBrokerNotExistWarning", $scope.showBrokerNotExistWarning);
             }, function () {
-                toastr.error('Failed Loading Customer Broker Existency!', { timeOut: 3000 });
+                toastr.error('Failed Loading Broker Existency!', { timeOut: 3000 });
             });
         };
 
@@ -178,6 +178,20 @@
                 $scope.isNoOfInstallmentsDisabled = false;
             }
           });
+
+          $scope.onCreateBrokerClick = function () {
+            ngDialog.open({
+                template: 'app-components/brokers/brokers.add.new.broker.view.html',
+                controller: 'AddNewBrokerController'
+            });
+          };
+
+          $scope.onCreateGuarantorClick = function () {
+            ngDialog.open({
+                template: 'app-components/guarantors/guarantors.add.new.guarantor.view.html',
+                controller: 'AddNewGuarantorController'
+            });
+          };
 
           
 
