@@ -1,0 +1,63 @@
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="panel panel-default">
+
+                <div class="panel-heading"><h3>Revenue Report</h3></div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <div id="dpFrom" class="input-group date" data-date-format="mm-dd-yyyy">                     
+                                <input class="form-control" type="text" readonly ng-model="revenueReport.fromDate"/>
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2">
+                            <div id="dpTo" class="input-group date" data-date-format="mm-dd-yyyy">                     
+                                <input class="form-control" type="text" readonly ng-model="revenueReport.toDate"/>
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                            </div> 
+                        </div>
+
+                        <div class="col-lg-3">
+                            <button class="btn btn-primary" ng-click="revenueReport._loadRevenueReport()">Filter</button>
+                        </div>
+                    </div>                   
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Contract No</th>
+                                <th>Customer</th>  
+                                <th>Paid date</th>
+                                <th>Amount with fine</th>                                                                           
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in revenueReport.revenueData.revenueRecords">  
+                                <td>{{ item.contractNo }}</td>  
+                                <td>{{ item.customer }}</td>  
+                                <td>{{ item.paidDate | date : 'MM/dd/yyyy' }}</td> 
+                                <td>{{ item.amountWithFine | number }}</td>                                                                                                           
+                            </tr>
+                            <tr>
+                                <td ng-show=" revenueReport.revenueData.revenueRecords"><b>Total</b></td>
+                                <td></td>
+                                <td></td>
+                                <td><b>{{revenueReport.revenueData.totalWithFine | number}}</b></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+</div>

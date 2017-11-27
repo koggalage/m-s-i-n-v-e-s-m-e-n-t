@@ -80,6 +80,23 @@
                 controller: 'ContractListController'
             })
 
+            .state('app.revenue_report',{
+                url:'/revenue_report',
+                templateUrl:'/app-components/revenue/revenue.list.view.html',
+                controller:'RevenueListController'
+            })
+
+            .state('app.accrued_revenue_report',{
+                url:'/accrued_revenue_report',
+                templateUrl:'/app-components/revenue/accrued.revenue.list.view.html',
+                controller:'AccruedRevenueListController'
+            })
+
+            .state('app.contract_close_list',{
+                url:'/contract_close_list',
+                templateUrl:'/app-components/contracts/contracts.close.list.view.html',
+                controller:'ContractCloseController'
+            });
     }
 
     

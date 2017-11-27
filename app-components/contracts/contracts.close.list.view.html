@@ -1,0 +1,44 @@
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="panel panel-default">
+
+                <div class="panel-heading"><h3>Closing contracts</h3></div>
+                <div class="panel-body">
+                  
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Contract No</th>
+                                <th>Customer</th>  
+                                <th>Loan</th>
+                                <th>Instalments</th>   
+                                <th>Total Paid Amount</th>                                                                         
+                                <!-- <th>Total Payble</th>    -->
+                                <th></th>                               
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in closingContracts.contractData">  
+                                <td>{{ item.contractNo }}</td>  
+                                <td>{{ item.customer }}</td>  
+                                <td>{{ item.loan | number }}</td> 
+                                <td>{{ item.instalments | number }}</td>
+                                <td>{{ item.totalPaidAmount | number }}</td>
+                                <!-- <td>{{ item.totalPayble | number }}</td>    -->
+                                <td><button class="btn btn-primary">View</button></td>                                                                                                        
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,63 @@
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="panel panel-default">
+
+                <div class="panel-heading"><h3>Accrued Report</h3></div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <div id="dpFrom" class="input-group date" data-date-format="mm-dd-yyyy">                     
+                                <input class="form-control" type="text" readonly ng-model="accruedRevenueReport.fromDate"/>
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2">
+                            <div id="dpTo" class="input-group date" data-date-format="mm-dd-yyyy">                     
+                                <input class="form-control" type="text" readonly ng-model="accruedRevenueReport.toDate"/>
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                            </div> 
+                        </div>
+
+                        <div class="col-lg-3">
+                            <button class="btn btn-primary" ng-click="accruedRevenueReport._loadAccruedRevenueReport()">Filter</button>
+                        </div>
+                    </div>                   
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Contract No</th>
+                                <th>Customer</th>  
+                                <th>Fine</th>
+                                <th>Amount with fine</th>                                                                           
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in accruedRevenueReport.revenueData.revenueRecords">  
+                                <td>{{ item.contractNo }}</td>  
+                                <td>{{ item.customer }}</td>  
+                                <td>{{ item.fine | number }}</td> 
+                                <td>{{ item.fine + item.instalmentAmount | number }}</td>                                                                                                           
+                            </tr>
+                            <tr>
+                                <td ng-show=" accruedRevenueReport.revenueData.revenueRecords"><b>Total</b></td>
+                                <td></td>
+                                <td>{{accruedRevenueReport.revenueData.fine}}</td>
+                                <td><b>{{accruedRevenueReport.revenueData.totalInstalmentAmount | number}}</b></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+</div>

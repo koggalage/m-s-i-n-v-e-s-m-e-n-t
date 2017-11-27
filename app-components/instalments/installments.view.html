@@ -16,13 +16,13 @@
                     <div class="row">
                         <div class="col-lg-5">
 
-                            <div role="form">
+                            <div role="form" ng-form="instalmentForm">
 
                                 <div class="form-group">
                                     <label>Customer NIC</label>
                                     <input type="text" name="nicCustomer" id="nicCustomer" ng-model="nicCustomer"
                                         ng-keyup="completeCustomerNICs(nicCustomer)" class="form-control" />
-                                    <ul class="list-group" ng-model="nicCustomer" ng-hide="hideCustomerNICs" ng-mouseleave="hideList()">
+                                    <ul class="list-group" ng-model="nicCustomer" ng-hide="hideCustomerNICs" ng-mouseleave="hideList()" required>
                                         <li class="list-group-item" ng-repeat="nicdataCustomer in filterNICsCustomer" ng-click="fillTextboxCustomerNICs(nicdataCustomer)">{{nicdataCustomer}}</li>
                                     </ul>
                                     <span class="text-danger" ng-show="showCustomerNotExistWarning">This Customer not exist!</span>
@@ -30,42 +30,46 @@
 
                                 <div class="form-group">
                                     <label>Vehicle No</label>
-                                    <select name="repeatSelect" id="repeatSelect" ng-options="contract.id as contract.vehicleNo for contract in vehicleNumbersOfOpenContracts" ng-model="instalments.instalment.ContractId">
+                                    <select class="form-control" name="repeatSelect" id="repeatSelect" 
+                                    ng-options="contract.id as contract.vehicleNo for contract in vehicleNumbersOfOpenContracts" 
+                                    ng-model="instalments.instalment.ContractId" ng-change="OnContractChange(instalments.instalment.ContractId)" required>
                                     </select>
                                 </div>
 
                                 <div class="input-append date form-group">
                                     <label>Due date</label>
-                                    <input class="form-control" ng-model="instalments.instalment.DueDate" size="16" id="instalmentDueDate" type="text" placeholder="2017-02-01">
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Paid amount</label>
-                                    <input class="form-control" ng-model="instalments.instalment.PaidAmount" placeholder="12000">
-                                </div>
-
-                                <div class="form-group" id="dp3">
-                                    <label>Unsettle amount</label>
-                                    <input class="form-control" ng-model="instalments.instalment.UnsettleAmount" placeholder="0" size="16" type="text">
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Late payment dates</label>
-                                    <input class="form-control" ng-model="instalments.instalment.LateDays" placeholder="0" size="16" type="text">
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Fine</label>
-                                    <input class="form-control" ng-model="instalments.instalment.Fine" placeholder="0" size="16" type="text">
+                                    <input ng-disabled="true" class="form-control" ng-model="instalments.instalment.DueDate | date:'yyyy-MM-dd'" size="16" id="instalmentDueDate" 
+                                    type="text" placeholder="2017-02-01" required>
                                 </div>
 
                                 <div class="input-append date form-group">
                                     <label>Paid date</label>
-                                    <input class="form-control" ng-model="instalments.instalment.PaidDate" placeholder="2017-01-01" size="16" type="text" id="instalmentCreatedOn">
+                                    <input class="form-control" 
+                                    ng-model="instalments.instalment.PaidDate" placeholder="2017-01-01" size="16" type="text" id="instalmentCreatedOn" required>
                                 </div>
 
+                                <div class="form-group">
+                                    <label>Paid amount</label>
+                                    <input class="form-control" type="number" name="payment" ng-model="instalments.instalment.PaidAmount" placeholder="12000" required>
+                                    <span ng-show="instalmentForm.payment.$error.required" class="help-block">Paid amount is required</span>
+                                </div>
+<!-- 
+                                <div class="form-group" id="dp3">
+                                    <label>Unsettle amount</label>
+                                    <input class="form-control" ng-model="instalments.instalment.UnsettleAmount" placeholder="0" size="16" type="text">
+                                </div> -->
 
-                                <button type="button" ng-click="instalments._createInstalment()" class="btn btn-default">Save</button>
+                                <!-- <div class="form-group">
+                                    <label>Late payment dates</label>
+                                    <input class="form-control" ng-model="instalments.instalment.LateDays" placeholder="0" size="16" type="text">
+                                </div> -->
+
+                                <!-- <div class="form-group">
+                                    <label>Fine</label>
+                                    <input class="form-control" ng-model="instalments.instalment.Fine" placeholder="0" size="16" type="text">
+                                </div> -->
+
+                                <button ng-disabled="!instalmentForm.$dirty || instalmentForm.$invalid" type="button" ng-click="instalments._createInstalment()" class="btn btn-default">Save</button>
 
                             </div>
 

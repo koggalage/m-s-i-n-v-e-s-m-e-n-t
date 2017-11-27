@@ -83,6 +83,23 @@
         };
 
 
+        function GetCurrentInstalmentDetails(contractId, paidDate)
+        {
+            InstalmentService.getCurrentInstalmentDetails(contractId, paidDate).then(function(result){
+                if(result.data){
+                    vm.instalments.instalment.DueDate = result.data.dueDate;
+                }
+            })
+        }
+
+
+        $scope.OnContractChange = function(contractId){
+            GetCurrentInstalmentDetails(contractId);
+        }
+        
+        $scope.OnPaidDateChange = function(contractId, paidDate){
+            GetCurrentInstalmentDetails(contractId, paidDate)
+        }
 
         function CreateInstalment(installment) {
             InstalmentService.createInstalment(installment).then(function (result) {
