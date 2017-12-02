@@ -11,7 +11,7 @@
 
     var app = angular.module('app',
                                     [
-                                        'ui.router', 'LocalStorageModule', 'ngDialog'
+                                        'ui.router', 'LocalStorageModule', 'ngDialog', 'ngDialog'
                                     ]
                                 )
                     .config(config)
@@ -96,6 +96,18 @@
                 url:'/contract_close_list',
                 templateUrl:'/app-components/contracts/contracts.close.list.view.html',
                 controller:'ContractCloseController'
+            })
+
+            .state('app.instalments_approve_list',{
+                url:'/instalments_approve_list',
+                templateUrl:'/app-components/instalments/instalments.approve.list.view.html',
+                controller:'InstalmentsApproveController'
+            })
+            
+            .state('app.closed_contracts',{
+                url:'/closed_contracts',
+                templateUrl:'/app-components/contracts/contracts.closed.list.view.html',
+                controller: 'ContractClosedListController'
             });
     }
 

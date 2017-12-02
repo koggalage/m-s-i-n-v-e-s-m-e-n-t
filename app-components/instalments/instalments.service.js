@@ -35,6 +35,50 @@
         this.getContractsToBeClosed = function(){
             return $http.get(serviceBase + '/GetContractsToBeClosed');
         };
+
+        // this.getPaybleAtContractClosingDate = function(contractId, paidDate){
+        //     return $http.get(serviceBase + '/GetPaybleAtContractClosingDate?contractId=' + contractId + '&paidDate=' + paidDate);
+        // };
+
+        this.getPaybleAtContractClosingDate = function(contractId, paidDate){
+            return $http.get(serviceBase + '/GetPaybleAtContractClosingDate?contractId=' + contractId + '&paidDate=' + paidDate);
+        };
+
+        this.closeContract = function(closeContract){
+            return $http.post(serviceBase + '/CloseContract', closeContract);
+        };
+
+        this.getInstalmentsToBeApproved = function(){
+            return $http.get(serviceBase + '/GetInstalmentsToBeApproved');
+        };
+
+        this.approveInstalment = function(instalmentId){
+            return $http.put(serviceBase + '/ApproveInstalment?instalmentId=' + instalmentId);
+        };
+
+        this.GetNumberOfInstalmentsForToday = function(){
+            return $http.get(serviceBase + '/GetNumberOfInstalmentsForToday');
+        };
+
+        this.GetAccruedRevenueForToday = function(){
+            return $http.get(serviceBase + '/GetAccuredRevenueForToday');
+        };
+
+        this.GetRevenueForToday = function(){
+            return $http.get(serviceBase + '/GetRevenueForToday');
+        };
+
+        this.GetNumberOfContracts = function(){
+            return $http.get(serviceBase + '/GetNumberOfContracts');
+        };
+
+        this.GetInstalmentsForToday = function(){
+            return $http.get(serviceBase + '/GetInstalmentsForToday');
+        };
+
+        this.GetContractDetails = function(contractId){
+            return $http.get(serviceBase + '/GetContractDetails?contractId=' + contractId);
+        };
     }
 
 })();

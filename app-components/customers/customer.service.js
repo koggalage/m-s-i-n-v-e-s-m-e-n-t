@@ -14,11 +14,11 @@
 
         this.createCustomer = function(customer){
             return $http.post(serviceBase + '/CreateCustomer', customer);
-        }
+        };
 
         this.getCustomerExistency = function(customerNIC){
             return $http.post(serviceBase + '/GetCustomerExistency?customerNIC=' + customerNIC);
-        }
+        };
 
     }
 

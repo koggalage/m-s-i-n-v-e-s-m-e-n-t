@@ -34,7 +34,7 @@
             
                 toastr.success('New Contract Created Successfully!', { timeOut: 3000 });
             }, function (error) {
-                toastr.error('Failed Creating a New Contract!', { timeOut: 3000 });
+                toastr.error(error.data.exceptionMessage, { timeOut: 3000 });
             })
         }
 

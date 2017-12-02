@@ -25,12 +25,24 @@
         function GetInstallmentsForContract(contractId)
         {
             InstalmentService.getInstallmentsForContract(contractId).then(function(result){
-                vm.instalments = result.data;
+                vm.contract = result.data;
             }, function(error){
 
             });
         }
 
+        function GetContractDetails(contractId)
+        {
+            InstalmentService.GetContractDetails(contractId).then(function(result){
+                vm.contract = result.data;
+            }, function(error){
+
+            });
+        };
+
+        function GetCustomerDetails(contractId){
+
+        }
 
         function onLoad() {
             vm = $scope;
@@ -39,7 +51,7 @@
 
             vm.contractId = vm.params.contractId;
 
-            GetInstallmentsForContract(vm.contractId);
+            GetContractDetails(vm.contractId);
 
             //vm.instalments = angular.extend(vm.instalments || {}, getInstalmentsExtender());
         }

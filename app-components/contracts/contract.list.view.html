@@ -1,33 +1,47 @@
 <div id="page-wrapper">
     <div class="container-fluid">
+
         <div class="row">
-            <div class="col-lg-12">
-                <h1 class="page-header">Active contracts</h1>
+            <div class="panel panel-default">
+        
+                <div class="panel-heading">
+                    <h3>Active contracts</h3>
+                </div>
+                <div class="panel-body">
+        
+                </div>
+        
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Customer</th>
+                                <th>Contact No</th>
+                                <th>Vehicle No</th>
+                                <th>Amount</th>                  
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr style="background-color: #428bca">
+                                <th style="color:white">Count</th>
+                                <td style="color:white">{{contracts.contractData.noOfContracts}}</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            <tr ng-repeat="item in contracts.contractData.contracts">
+                                <td><a href="/#/app/contract_instalment_details/{{ item.id }}" target="_blank">{{ item.customerName }}</a></td>
+                                <td>{{ item.contractNo }}</td>
+                                <td>{{ item.vehicleNo }}</td>
+                                <th>{{ item.amount }}</th>
+                            </tr>
+                    
+                        </tbody>
+                    </table>
+                </div>
+        
             </div>
-            <!-- /.col-lg-12 -->
-
-
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Vehicle No/ Property</th>
-                        <th>Amount</th>                      
-                        <th>Customer</th>
-                        <th>Contact No</th>
-
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="item in contracts.contractData">                      
-                        <td scope="row">{{ item.vehicleNo }}</td>
-                        <th >{{ item.amount }}</th>
-                        <td>{{ item.customerName }}</td>
-                        <td>{{ item.contractNo }}</td>
-                    </tr>
-
-                </tbody>
-            </table>
-
         </div>
     </div>
 </div>

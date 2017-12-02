@@ -30,7 +30,7 @@
                                 <td>{{ item.instalments | number }}</td>
                                 <td>{{ item.totalPaidAmount | number }}</td>
                                 <!-- <td>{{ item.totalPayble | number }}</td>    -->
-                                <td><button class="btn btn-primary">View</button></td>                                                                                                        
+                                <td><button class="btn btn-primary" ng-click="closingContracts._openContractCloseDialog(item.contractId)">View</button></td>
                             </tr>
                         </tbody>
                     </table>
