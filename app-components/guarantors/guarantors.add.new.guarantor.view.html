@@ -1,0 +1,45 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+        <h4 class="modal-title">Add new guarantor</h4>
+    </div>
+    <div class="modal-body">
+        <div role="form">
+
+            <div class="form-group">
+                <label>NIC</label>
+                <input type="text" name="nicGuarantor" id="nicGuarantor" ng-model="guarantors.guarantor.NIC" ng-keyup="guarantors._getGuarantorExistency()"
+                    class="form-control" placeholder="900015512v" />
+
+                <span class="text-danger" ng-show="isGuarantorExist">This Guarantor already exist in the databaset!</span>
+            </div>
+
+            <div class="form-group">
+                <label>Name</label>
+                <input class="form-control" ng-model="guarantors.guarantor.Name" placeholder="T.S Lorensu">
+            </div>
+
+            <div class="form-group">
+                <label>Address</label>
+                <textarea class="form-control" ng-model="guarantors.guarantor.Address" rows="4" cols="50" placeholder="100/1,Rathmalana, colombo"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Contact No</label>
+                <input class="form-control" ng-model="guarantors.guarantor.ContactNo" placeholder="0776784325">
+            </div>
+
+            <div class="form-group">
+                <label>Occupation</label>
+                <input class="form-control" ng-model="guarantors.guarantor.Occupation" placeholder="Mechanic">
+            </div>
+
+            <button type="submit" ng-disabled="isGuarantorExist" ng-click="guarantors._createGuarantor()" class="btn btn-default">Add new guarantor</button>
+
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    </div>
+</div>

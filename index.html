@@ -14,6 +14,10 @@
         <link href="app-content/datepicker.css" rel="stylesheet">
         <link href="app-content/bootstrap-glyphicons.css" rel="stylesheet">
         
+        <link rel="stylesheet" href="bower_components/angular-tags/dist/angular-tags-0.2.10.css"/>
+        <link rel="stylesheet" href="bower_components/ng-dialog/css/ngDialog.min.css">
+        <link rel="stylesheet" href="bower_components/ng-dialog/css/ngDialog-theme-default.min.css">
+
 
     </head>
 
@@ -34,7 +38,17 @@
         <script src="app-scripts/raphael.min.js"></script>
         <script src="app-scripts/jquery-ui.js"></script>
 
+
         <script src="app-scripts/bootstrap-datepicker.js"></script>
+
+        <!-- 3rd Party Scripts -->
+        <script src="bower_components/angular-tags/dist/angular-tags-0.2.10.js"></script>
+        <script src="bower_components/angular-tags/dist/angular-tags-0.2.10-tpls.js"></script>
+        <script src="bower_components/angular-ui-bootstrap-bower/ui-bootstrap.min.js"></script>
+        <script src="bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls.js"></script>
+        <script src="bower_components/ng-dialog/js/ngDialog.min.js"></script>
+        <!-- End 3rd Party Scripts -->
+
 
         <!-- <script src="app-scripts/morris.min.js"></script>
         <script src="app-scripts/morris-data.js"></script> -->
@@ -44,6 +58,8 @@
 
         <script src="app.js"></script>
 
+        
+        
         <!--Start: Controller-->
 
         <script src="app-components/sessions/sessions.controller.js"></script>
@@ -56,11 +72,14 @@
         <script src="app-components/brokers/brokers.add.new.broker.controller.js"></script>
         <script src="app-components/instalments/instalments.controller.js"></script>
         <script src="app-components/instalments/instalments.details.controller.js"></script>
-
+        
         <script src="app-components/common/toppannel.controller.js"></script>
+
         <script src="app-components/revenue/revenue.list.contrller.js"></script>
         <script src="app-components/revenue/accrued.revenue.list.contrller.js"></script>
-        <script src="app-components/contracts/contracts.close.list.controller.js"></script>
+        <script src="app-components/contracts/contracts.close.list.controller.js"></script>      
+        <script src="app-components/guarantors/guarantors.add.new.guarantor.controller.js"></script>
+
 
         <!--End: Controller-->
 
@@ -75,6 +94,9 @@
         <script src="app-content/toastr.min.js"></script>
 
         <script src="app-components/instalments/instalments.service.js"></script>
+
+        <script src="app-components/guarantors/guarantors.add.new.guarantor.service.js"></script>
+        
 
          <!--End: Services-->
 
