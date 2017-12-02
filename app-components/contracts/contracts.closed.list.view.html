@@ -1,0 +1,47 @@
+<div id="page-wrapper">
+        <div class="container-fluid">
+    
+            <div class="row">
+                <div class="panel panel-default">
+            
+                    <div class="panel-heading">
+                        <h3>Closed contracts</h3>
+                    </div>
+                    <div class="panel-body">
+            
+                    </div>
+            
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Customer</th>
+                                    <th>Contact No</th>
+                                    <th>Vehicle No</th>
+                                    <th>Amount</th>                  
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr style="background-color: #428bca">
+                                    <th style="color:white">Count</th>
+                                    <td style="color:white">{{contracts.closedContractData.noOfContracts}}</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                <tr ng-repeat="item in contracts.closedContractData.contracts">
+                                    <td><a href="/#/app/contract_instalment_details/{{ item.id }}" target="_blank">{{ item.customerName }}</a></td>
+                                    <td>{{ item.contractNo }}</td>
+                                    <td>{{ item.vehicleNo }}</td>
+                                    <th>{{ item.amount }}</th>
+                                </tr>
+                        
+                            </tbody>
+                        </table>
+                    </div>
+            
+                </div>
+            </div>
+        </div>
+    </div>
