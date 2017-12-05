@@ -1,0 +1,64 @@
+<div id="page-wrapper">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Upload Documents</h1>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+
+        <div class="row">
+
+            <div class="col-lg-12">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-5">
+
+                            <div role="form">
+
+                                <div class="form-group">
+                                    <label>Customer NIC</label>
+                                    <input type="text" name="nicCustomer" id="nicCustomer" ng-model="nicCustomer"
+                                        ng-keyup="completeCustomerNICs(nicCustomer)" class="form-control" />
+                                    <ul class="list-group" ng-model="nicCustomer" ng-hide="hideCustomerNICs" ng-mouseleave="hideList()" required>
+                                        <li class="list-group-item" ng-repeat="nicdataCustomer in filterNICsCustomer" ng-click="fillTextboxCustomerNICs(nicdataCustomer)">{{nicdataCustomer}}</li>
+                                    </ul>
+                                    <span class="text-danger" ng-show="showCustomerNotExistWarning">This Customer not exist!</span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Vehicle No</label>
+                                    <select class="form-control" name="repeatSelect" id="repeatSelect" 
+                                    ng-options="contract.id as contract.vehicleNo for contract in vehicleNumbersOfOpenContracts" 
+                                    ng-model="files.file.ContractId" ng-change="OnContractChange(files.file.ContractId)" required>
+                                    </select>
+                                </div>
+
+                                <!--ADD A PROGRESS BAR ELEMENT.-->
+                                <p><progress id="pro" value="0"></progress></p>
+
+                                <div class="form-group">
+                                    <input class="btn btn-default" type="file" id="file" name="file" multiple
+                                        onchange="angular.element(this).scope().getFileDetails(this)" />
+                                </div>
+
+                                <div class="form-group">
+                                    <input class="btn btn-default" type="button" ng-click="uploadFiles()" value="Upload" />
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        
+
+
+    </div>
+</div>

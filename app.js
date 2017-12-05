@@ -108,6 +108,12 @@
                 url:'/closed_contracts',
                 templateUrl:'/app-components/contracts/contracts.closed.list.view.html',
                 controller: 'ContractClosedListController'
+            })
+
+            .state('app.file_upload',{
+                url:'/file_upload',
+                templateUrl:'/app-components/fileUpload/fileUpload.view.html',
+                controller: 'FileController'
             });
     }
 
