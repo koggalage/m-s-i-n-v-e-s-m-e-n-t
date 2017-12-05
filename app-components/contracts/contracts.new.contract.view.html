@@ -46,7 +46,7 @@
                                     <input ng-disabled="true" class="form-control" ng-model="contracts.contract.Insallment" placeholder="Monthly Installment">
                                 </div>
 
-                                <div class="form-group">
+                                <div class="form-group" ng-hide="true">
                                     <label>Type of </label>
                                     <div class="radio">
                                         <label>
@@ -79,9 +79,19 @@
                                     <tags ng-model="tags"></tags>
                                 </div>
 
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <label>NIC of the guarantor</label>
                                     <input class="form-control" ng-keyup="" ng-model="contracts.contract.guarantor" placeholder="A.G Smith">
+                                </div> -->
+
+                                <div class="form-group">
+                                    <label>NIC of the guarantor</label>
+                                    <input type="text" name="nicGuarantor" id="nicGuarantor" ng-model="nicGuarantor" ng-keyup="completeGuarantorNICs(nicGuarantor)" class="form-control" />
+                                    <ul class="list-group" ng-model="nicGuarantor" ng-hide="hideGuarantorNICs" ng-mouseleave="hideList()">
+                                        <li class="list-group-item" ng-repeat="nicdataGuarantor in filterNICsGuarantor" ng-click="fillTextboxGuarantorNICs(nicdataGuarantor)">{{nicdataGuarantor}}</li>
+                                    </ul>
+
+                                    <span class="text-danger" ng-show="showGuarantorNotExistWarning">This Guarantor not exist!</span>
                                 </div>
 
                                 <div class="form-group">

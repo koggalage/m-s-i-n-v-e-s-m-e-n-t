@@ -5,14 +5,39 @@
         .module('app')
         .controller('ContractsController', ContractsController);
 
-    ContractsController.$inject = ['$scope', 'ngDialog', 'ContractsService', 'AddNewBrokerService', 'CustomerService'];
-    function ContractsController($scope, ngDialog, ContractsService, AddNewBrokerService, CustomerService) {
+    ContractsController.$inject = ['$scope', 'ngDialog', 'ContractsService', 'AddNewBrokerService', 'CustomerService', 'AddNewGuarantorService'];
+    function ContractsController($scope, ngDialog, ContractsService, AddNewBrokerService, CustomerService, AddNewGuarantorService) {
 
         var vm = {};
         $scope.showBrokerNotExistWarning = false;
         $scope.showCustomerNotExistWarning = false;
+        $scope.showGuarantorNotExistWarning = false;
 
         $scope.isNoOfInstallmentsDisabled = true;
+
+        function getContractExtender() {
+            var obj = { contract: {} };
+
+            obj._createContract = function () {
+                CreateContract(obj.contract);
+            };
+
+            obj._getMonthlyInstallment = function () {
+                GetMonthlyInstallment(obj.contract);
+            };
+
+            //obj._addNewBrokerTemplate = '/app-components/brokers/brokers.add.new.broker.view.html';
+
+            obj._openBrokerPopup = function () {
+                OpenBrokerPopup();
+            };
+
+            obj._GetBrokerExistency = function () {
+                GetBrokerExistency(obj.contract.nic);
+            };
+
+            return obj;
+        }
 
 
         // function OpenBrokerPopup() {
@@ -26,12 +51,10 @@
         // }
 
         function CreateContract(contract) {
-            contract.GuarantorId = "1";
-            //contract.BrokerId = null;
             console.log("contract", contract);
             ContractsService.createContract(contract).then(function (result) {
-            console.log("result", result);
-            
+                console.log("result", result);
+
                 toastr.success('New Contract Created Successfully!', { timeOut: 3000 });
             }, function (error) {
                 toastr.error(error.data.exceptionMessage, { timeOut: 3000 });
@@ -74,6 +97,24 @@
             });
         };
 
+        function loadGuarantors() {
+
+            AddNewGuarantorService.getGuarantorDetails().then(function (result) {
+                $scope.contractGuarantorList = result;
+
+                var guarantorNICs = [];
+
+                result.data.guarantorDetails.forEach(function (elm) {
+                    guarantorNICs.push(elm.nic);
+                });
+
+                $scope.guarantorNICs = guarantorNICs;
+
+            }, function () {
+                toastr.error('Failed Loading Guarantors!', { timeOut: 3000 });
+            });
+        };
+
         function GetCustomerExistency(customerNIC) {
             CustomerService.getCustomerExistency(customerNIC).then(function (result) {
                 $scope.customerInfo = result;
@@ -83,9 +124,8 @@
                     vm.contracts.contract.CustomerId = null;
                 } else {
                     $scope.showCustomerNotExistWarning = false;
-                    vm.contracts.contract.CustomerId =result.data.id;
+                    vm.contracts.contract.CustomerId = result.data.id;
                 }
-                console.log("$scope.showBrokerNotExistWarning", $scope.showBrokerNotExistWarning);
             }, function () {
                 toastr.error('Failed Loading Customer Existency!', { timeOut: 3000 });
             });
@@ -102,9 +142,23 @@
                     $scope.showBrokerNotExistWarning = false;
                     vm.contracts.contract.BrokerId = result.data.id;
                 }
-                console.log("$scope.showBrokerNotExistWarning", $scope.showBrokerNotExistWarning);
             }, function () {
                 toastr.error('Failed Loading Broker Existency!', { timeOut: 3000 });
+            });
+        };
+
+        function GetGuarantorExistency(guarantorNIC) {
+            AddNewGuarantorService.getGuarantorExistency(guarantorNIC).then(function (result) {
+                if (result.data == null) {
+                    $scope.showGuarantorNotExistWarning = true;
+                    vm.contracts.contract.GuarantorId = null;
+                } else {
+                    $scope.showGuarantorNotExistWarning = false;
+                    vm.contracts.contract.GuarantorId = result.data.id;
+                }
+                console.log("$scope.isGuarantorExist", $scope.isGuarantorExist);
+            }, function () {
+                toastr.error('Failed Loading Guarantor Existency!', { timeOut: 3000 });
             });
         };
 
@@ -115,20 +169,26 @@
             }, function (error) {
                 toastr.error('Failed to get Monthly Installment!', { timeOut: 3000 });
             });
-          }
+        }
 
-        $scope.$watch('nicCustomer', function(newValues, oldValue) {
-            if(newValues != oldValue) {
+        $scope.$watch('nicCustomer', function (newValues, oldValue) {
+            if (newValues != oldValue) {
                 GetCustomerExistency(newValues);
             }
-          });
+        });
 
-          $scope.$watch('nicBroker', function(newValues, oldValue) {
-            if(newValues != oldValue) {
+        $scope.$watch('nicBroker', function (newValues, oldValue) {
+            if (newValues != oldValue) {
                 GetBrokerExistency(newValues);
             }
-          });
-          
+        });
+
+        $scope.$watch('nicGuarantor', function (newValues, oldValue) {
+            if (newValues != oldValue) {
+                GetGuarantorExistency(newValues);
+            }
+        });
+
 
         $scope.completeCustomerNICs = function (string) {
             GetCustomerExistency(string);
@@ -157,7 +217,20 @@
                 }
             });
             $scope.filterNICsBroker = output;
-            
+
+        };
+
+        $scope.completeGuarantorNICs = function (nicGuarantor) {
+            GetGuarantorExistency(nicGuarantor);
+            $scope.hideGuarantorNICs = false;
+            var output = [];
+            angular.forEach($scope.guarantorNICs, function (nic) {
+                if (nic.toLowerCase().indexOf(nicGuarantor.toLowerCase()) >= 0) {
+                    output.push(nic);
+                }
+            });
+            $scope.filterNICsGuarantor = output;
+
         };
 
         $scope.fillTextboxBrokerNICs = function (string) {
@@ -165,72 +238,53 @@
             $scope.hideBrokerNICs = true;
         };
 
+        $scope.fillTextboxGuarantorNICs = function (string) {
+            $scope.nicGuarantor = string;
+            $scope.hideGuarantorNICs = true;
+        };
+
         $scope.hideList = function () {
             $scope.hideCustomerNICs = true;
             $scope.hideBrokerNICs = true;
+            $scope.hideGuarantorNICs = true;
             //$scope.country = '';
         };
 
-        $scope.$watch('contracts.contract.Amount', function(newValues, oldValue) {
-            if(newValues == null || newValues == undefined || newValues == "") {
+        $scope.$watch('contracts.contract.Amount', function (newValues, oldValue) {
+            if (newValues == null || newValues == undefined || newValues == "") {
                 $scope.isNoOfInstallmentsDisabled = true;
             } else {
                 $scope.isNoOfInstallmentsDisabled = false;
             }
-          });
+        });
 
-          $scope.onCreateBrokerClick = function () {
+        $scope.onCreateBrokerClick = function () {
             ngDialog.open({
                 template: 'app-components/brokers/brokers.add.new.broker.view.html',
                 controller: 'AddNewBrokerController'
             });
-          };
+        };
 
-          $scope.onCreateGuarantorClick = function () {
+        $scope.onCreateGuarantorClick = function () {
             ngDialog.open({
                 template: 'app-components/guarantors/guarantors.add.new.guarantor.view.html',
                 controller: 'AddNewGuarantorController'
             });
-          };
-
-          
-
-        function getContractExtender() {
-            var obj = { contract: {} };
-
-            obj._createContract = function () {
-                CreateContract(obj.contract);
-            };
-
-            obj._getMonthlyInstallment = function () {
-                GetMonthlyInstallment(obj.contract);
-            };
-
-            //obj._addNewBrokerTemplate = '/app-components/brokers/brokers.add.new.broker.view.html';
-
-            obj._openBrokerPopup = function () {
-                OpenBrokerPopup();
-            };
-
-            obj._GetBrokerExistency = function () {
-                GetBrokerExistency(obj.contract.nic);
-            };
-
-            return obj;
-        }
+        };
 
         function onLoad() {
             vm = $scope;
             vm.contracts = angular.extend(vm.contracts || {}, getContractExtender());
 
-            $scope.tags = [
-                { text: 'Tag1' },
-                { text: 'Tag2' },
-                { text: 'Tag3' }
-              ];
+            // $scope.tags = [
+            //     { text: 'Tag1' },
+            //     { text: 'Tag2' },
+            //     { text: 'Tag3' }
+            // ];
 
             loadCustomers();
             loadBrokers();
+            loadGuarantors();
         }
 
         onLoad();

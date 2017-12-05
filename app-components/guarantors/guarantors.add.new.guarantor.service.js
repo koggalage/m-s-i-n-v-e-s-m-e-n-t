@@ -19,6 +19,10 @@
             return $http.post(serviceBase + '/GetGuarantorExistency?GuarantorNIC=' + GuarantorNIC);
         }
 
+        this.getGuarantorDetails = function(){
+            return $http.get(serviceBase + '/LoadGuarantorDetails');
+        };
+
     }
 
 })();

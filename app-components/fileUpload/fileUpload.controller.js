@@ -45,10 +45,10 @@
                 console.log("result", result);
                 if (result.data == null) {
                     $scope.showCustomerNotExistWarning = true;
-                    vm.files.File.CustomerId = null;
+                    vm.files.file.CustomerId = null;
                 } else {
                     $scope.showCustomerNotExistWarning = false;
-                    vm.files.File.CustomerId = result.data.id;
+                    vm.files.file.CustomerId = result.data.id;
                     GetVehicleNoByCustomerId(result.data.id);
                 }
             }, function () {
@@ -59,6 +59,7 @@
         function GetVehicleNoByCustomerId(customerId) {
             ContractsService.getVehicleNoByCustomerId(customerId).then(function (result) {
                 $scope.vehicleNumbersOfOpenContracts = result.data;
+                $scope.contractId = result.data[0].id;
             }, function () {
                 toastr.error('Failed Loading Vehicle Numbers for Customer!', { timeOut: 3000 });
             });
@@ -105,8 +106,10 @@
         // NOW UPLOAD THE FILES.
         $scope.uploadFiles = function () {
 
+            var data = new FormData();
+
             //FILL FormData WITH FILE DETAILS.
-            var contractId = $scope.vehicleNumbersOfOpenContracts.Id;
+            var contractId = $scope.contractId;
 
             // var itemName = $scope.itemName;
             // var itemPrice = $scope.itemPrice;
