@@ -46,9 +46,9 @@
                                 <td>{{ item.amountWithFine | number }}</td>                                                                                                           
                             </tr>
                             <tr>
-                                <td ng-show=" revenueReport.revenueData.revenueRecords"><b>Total</b></td>
-                                <td></td>
-                                <td></td>
+                                <td><b>Total Fine</b></td>
+                                <td>{{ revenueReport.revenueData.fine }}</td>
+                                <td><b>Total amount with fine</b></td>
                                 <td><b>{{revenueReport.revenueData.totalWithFine | number}}</b></td>
                             </tr>
                         </tbody>
