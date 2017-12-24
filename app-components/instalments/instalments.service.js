@@ -75,9 +75,13 @@
         this.GetInstalmentsForToday = function(){
             return $http.get(serviceBase + '/GetInstalmentsForToday');
         };
-
+        
         this.GetContractDetails = function(contractId){
             return $http.get(serviceBase + '/GetContractDetails?contractId=' + contractId);
+        };
+
+        this.GetContractDocuments = function(contractId){
+            return $http.get(serviceBase + '/GetContractDocuments?contractId=' + contractId);
         };
     }
 

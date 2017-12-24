@@ -11,7 +11,7 @@
 
     var app = angular.module('app',
                                     [
-                                        'ui.router', 'LocalStorageModule', 'ngDialog', 'ngDialog'
+                                        'ui.router', 'LocalStorageModule', 'ngDialog', 'bootstrapLightbox'
                                     ]
                                 )
                     .config(config)

@@ -1,48 +1,44 @@
-(function(){
+(function () {
     'use strict'
 
     angular
-    .module('app')
-    .controller('InstalmentDetailController', InstalmentDetailController);
+        .module('app')
+        .controller('InstalmentDetailController', InstalmentDetailController);
 
-    InstalmentDetailController.$inject = ['$scope', 'InstalmentService', '$stateParams'];
+    InstalmentDetailController.$inject = ['$scope', 'InstalmentService', '$stateParams', 'Lightbox'];
 
-    function InstalmentDetailController($scope, InstalmentService, $stateParams)
-    {
+    function InstalmentDetailController($scope, InstalmentService, $stateParams, Lightbox) {
         var vm = {};
+        $scope.images = [];
 
-        // function getInstalmentsDetailsExtender() {
-        //     var obj = { instalmentsData : [] };
-
-        //     obj._getInstallmentsForContract = function(contractId)
-        //     {
-        //         GetInstallmentsForContract(contractId);
-        //     }
-
-        //     return obj;
-        // }
-
-        function GetInstallmentsForContract(contractId)
-        {
-            InstalmentService.getInstallmentsForContract(contractId).then(function(result){
+        function GetInstallmentsForContract(contractId) {
+            InstalmentService.getInstallmentsForContract(contractId).then(function (result) {
                 vm.contract = result.data;
-            }, function(error){
+            }, function (error) {
 
             });
         }
 
-        function GetContractDetails(contractId)
-        {
-            InstalmentService.GetContractDetails(contractId).then(function(result){
+        function GetContractDetails(contractId) {
+            InstalmentService.GetContractDetails(contractId).then(function (result) {
                 vm.contract = result.data;
-            }, function(error){
+            }, function (error) {
 
             });
         };
 
-        function GetCustomerDetails(contractId){
+        function GetContractDocuments(contractId) {
+            InstalmentService.GetContractDocuments(contractId).then(function (result) {
+                console.log("Images Result", result);
+                $scope.images = result.data.files;
+            }, function (error) {
 
-        }
+            });
+        };
+
+        $scope.openLightboxModal = function (index) {
+            Lightbox.openModal($scope.images, index);
+        };
 
         function onLoad() {
             vm = $scope;
@@ -53,7 +49,7 @@
 
             GetContractDetails(vm.contractId);
 
-            //vm.instalments = angular.extend(vm.instalments || {}, getInstalmentsExtender());
+            GetContractDocuments(vm.contractId);
         }
 
         onLoad();
