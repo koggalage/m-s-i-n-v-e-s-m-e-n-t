@@ -1,0 +1,20 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <h4 class="modal-title">Add New Document Charge Rate</h4>
+    </div>
+    <div class="modal-body" ng-form="_form">
+
+        <div role="form">
+
+            <div class="form-group">
+                <label>Value</label>
+                <input class="form-control" name="documentChargeRate" ng-model="docCharge.rate" required type="number">
+            </div>
+
+            <button class="btn btn-primary" type="submit" ng-disabled="!_form.$dirty || _form.$invalid" 
+                ng-click="docCharge._addNewDocChargeRate()">Add</button>
+
+        </div>
+
+    </div>
+</div>

@@ -26,7 +26,9 @@
                 GetMonthlyInstallment(obj.contract);
             };
 
-            //obj._addNewBrokerTemplate = '/app-components/brokers/brokers.add.new.broker.view.html';
+            obj._getDocumentCharge = function(){
+                GetDocumentCharge(obj.contract);
+            };
 
             obj._openBrokerPopup = function () {
                 OpenBrokerPopup();
@@ -164,10 +166,17 @@
 
         function GetMonthlyInstallment(contract) {
             ContractsService.getMonthlyInstallment(contract).then(function (result) {
-                console.log("result getMonthlyInstallment", result);
                 vm.contracts.contract.Insallment = result.data;
             }, function (error) {
                 toastr.error('Failed to get Monthly Installment!', { timeOut: 3000 });
+            });
+        }
+
+        function GetDocumentCharge(contract) {
+            ContractsService.getDocumentCharge(contract).then(function (result) {
+                vm.contracts.contract.DocumentCharge = result.data;
+            }, function (error) {
+                toastr.error('Failed to get document charge!', { timeOut: 3000 });
             });
         }
 

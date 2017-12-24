@@ -1,0 +1,118 @@
+<div id="page-wrapper">
+    <div class="container-fluid">
+
+        <div class="row">
+
+            <div class="col-lg-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3>Interest Rate &nbsp;<a ng-click="interest._openAddNewInterestDialog()"><i class="fa fa-plus-circle fa-1x"></i></a></h3>
+                        
+                    </div>
+                    <div class="panel-body">
+
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Description</th>
+                                    <th>Value</th>
+                                    <th>Valid From</th>
+                                    <th>Valid Until</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in interest.records">
+                                    <td>{{ item.description }}</td>
+                                    <td>{{ item.value }}</td>
+                                    <td>{{ item.validFrom | date}}</td>
+                                    <td>{{ item.validUntil }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="col-lg-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3>Late fee Rate &nbsp;<a ng-click="latefee._openAddNewLateFeeDialog()" href=""><i class="fa fa-plus-circle fa-1x"></i></a></h3>
+                    </div>
+                    <div class="panel-body">
+
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Description</th>
+                                    <th>Value</th>
+                                    <th>Valid From</th>
+                                    <th>Valid Until</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in latefee.records">
+                                    <td>{{ item.description }}</td>
+                                    <td>{{ item.value }}</td>
+                                    <td>{{ item.validFrom | date}}</td>
+                                    <td>{{ item.validUntil }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="row" style="margin-top:60px">
+
+            <div class="col-lg-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3>Document Charges Rate &nbsp;<a href="" ng-click="docCharge._openAddNewDocumentChargeDialog()"><i class="fa fa-plus-circle fa-1x"></i></a></h3>
+                    </div>
+                    <div class="panel-body">
+
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Description</th>
+                                    <th>Value</th>
+                                    <th>Valid From</th>
+                                    <th>Valid Until</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in docCharge.records">
+                                    <td>{{ item.description }}</td>
+                                    <td>{{ item.value }}</td>
+                                    <td>{{ item.validFrom | date}}</td>
+                                    <td>{{ item.validUntil }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+    </div>
+</div>

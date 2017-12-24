@@ -92,6 +92,12 @@
                 controller:'AccruedRevenueListController'
             })
 
+            .state('app.document_charge_report',{
+                url:'/document_charge_report',
+                templateUrl:'/app-components/revenue/document.charge.list.view.html',
+                controller:'DocumentChargeListController'
+            })
+
             .state('app.contract_close_list',{
                 url:'/contract_close_list',
                 templateUrl:'/app-components/contracts/contracts.close.list.view.html',
@@ -114,6 +120,12 @@
                 url:'/file_upload',
                 templateUrl:'/app-components/fileUpload/fileUpload.view.html',
                 controller: 'FileController'
+            })
+            
+            .state('app.settings',{
+                url:'/settings',
+                templateUrl:'/app-components/settings/settings.view.html',
+                controller: 'SettingsController'
             });
     }
 

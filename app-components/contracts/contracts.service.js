@@ -47,6 +47,13 @@
             return $http.get(serviceBase + '/GetClosedContracts');
         };
 
+        this.getDocumentCharge = function(contract){
+            return $http.get(serviceBase + '/GetDocumentCharge?amount=' + contract.Amount);
+        };
+
+        this.getDocumentChargeReport = function(from, to){
+            return $http.get(serviceBase + '/GetDocumentChargeReport?from='+ from +'&to=' + to);
+        };
     }
 
 })();

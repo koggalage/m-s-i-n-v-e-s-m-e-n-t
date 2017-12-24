@@ -1,0 +1,27 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <h4 class="modal-title">Add New Rate</h4>
+    </div>
+    <div class="modal-body" ng-form="_form">
+
+        <div role="form">
+
+            <div class="form-group">
+                <label for="mySelect">Interest Type:</label>
+                <select class="form-control" name="rateOptions" id="rateOptions"
+                  ng-options="option.description for option in interest._rateOptions track by option.type"
+                  ng-model="interest.type" required></select>
+            </div>
+
+            <div class="form-group">
+                <label>Value</label>
+                <input class="form-control" name="interestRate" ng-model="interest.rate" required type="number">
+            </div>
+
+            <button class="btn btn-primary" type="submit" ng-disabled="!_form.$dirty || _form.$invalid" 
+                ng-click="interest._addNewInterestRate()">Add</button>
+
+        </div>
+
+    </div>
+</div>

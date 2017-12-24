@@ -3,28 +3,28 @@
 
     angular
         .module('app')
-        .controller('RevenueListController', RevenueListController);
+        .controller('DocumentChargeListController', DocumentChargeListController);
 
-    RevenueListController.$inject = ['$scope','$timeout', 'InstalmentService'];
+    DocumentChargeListController.$inject = ['$scope', 'ContractsService', '$timeout'];
 
-    function RevenueListController($scope, $timeout, InstalmentService){
-
+    function DocumentChargeListController($scope, ContractsService, $timeout){
+        
         var vm = {};
 
-        function getRevenueReportExtender(){
+        function getDocumentChargeReportExtender(){
             
             var obj = {};
 
-            obj._loadRevenueReport = function(){
-                loadRevenueReport();
+            obj._loadDocumentChargeReport = function(){
+                loadDocumentChargeReport();
             };
 
             return obj;
         }
 
-        function loadRevenueReport(){
-            InstalmentService.getRevenueReport(vm.revenueReport.fromDate, vm.revenueReport.toDate).then(function(result){
-                vm.revenueReport.revenueData = result.data;    
+        function loadDocumentChargeReport(){
+            ContractsService.getDocumentChargeReport(vm.documentCharge.fromDate, vm.documentCharge.toDate).then(function(result){
+                vm.documentCharge.revenueData = result.data;    
             })
         }
 
@@ -44,10 +44,10 @@
               }).datepicker('update', new Date());                 
             });           
 
-            vm.revenueReport = angular.extend(vm.revenueReport || {}, getRevenueReportExtender());
+            vm.documentCharge = angular.extend(vm.documentCharge || {}, getDocumentChargeReportExtender());
 
             $timeout(function() {
-                vm.revenueReport._loadRevenueReport();
+                vm.documentCharge._loadDocumentChargeReport();
              }, 3000); 
         }
 

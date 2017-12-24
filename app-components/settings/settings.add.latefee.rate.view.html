@@ -1,0 +1,27 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <h4 class="modal-title">Add New Late Fee Rate</h4>
+    </div>
+    <div class="modal-body" ng-form="_form">
+
+        <div role="form">
+
+            <div class="form-group">
+                <label for="mySelect">LateFee Type:</label>
+                <select class="form-control" name="rateOptions" id="rateOptions"
+                  ng-options="option.description for option in latefee._rateOptions track by option.type"
+                  ng-model="latefee.type" required></select>
+            </div>
+
+            <div class="form-group">
+                <label>Value</label>
+                <input class="form-control" name="lateFeeRate" ng-model="latefee.rate" required type="number">
+            </div>
+
+            <button class="btn btn-primary" type="submit" ng-disabled="!_form.$dirty || _form.$invalid" 
+                ng-click="latefee._addNewLateFeeRate()">Add</button>
+
+        </div>
+
+    </div>
+</div>
