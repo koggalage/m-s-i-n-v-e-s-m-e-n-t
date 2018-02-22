@@ -96,6 +96,18 @@
                                 </div>
 
                                 <div class="form-group">
+                                    <label>Contract process Location</label>
+                                    <select class="form-control" name="location" id="location"
+                                    ng-options="option.location for option in contracts.locations track by option.code"
+                                    ng-model="contracts.contract.location" required ng-change="contracts._generateContractNumber()"></select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Contract Number</label>
+                                    <input ng-model="contracts.contract.ContractNo" class="form-control" placeholder="Contract number" ng-disabled="true">
+                                </div>                                
+
+                                <div class="form-group">
                                     <label>Description</label>
                                     <!-- <input class="form-control" type="textarea" ng-model="contracts.contract.Description" placeholder="Description"> -->
                                     <textarea  class="form-control" rows="6" cols="50" ng-model="contracts.contract.Description"></textarea>

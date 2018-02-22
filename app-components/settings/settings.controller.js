@@ -5,9 +5,9 @@
         .module('app')
         .controller('SettingsController', SettingsController);
 
-        SettingsController.$inject = ['$scope', 'ngDialog', 'SettingsService'];
+        SettingsController.$inject = ['$scope', 'ngDialog', 'SettingsService', 'ContractsService'];
 
-        function SettingsController($scope, ngDialog, SettingsService){
+        function SettingsController($scope, ngDialog, SettingsService, ContractsService){
 
             var vm = {};
 
@@ -84,6 +84,24 @@
                 return obj;
             }
             
+            function getLocationExtender(){
+                var obj = { location: {} };
+                
+                obj._openAddLocationDialog = function(){
+                    openAddLocationDialog();
+                }
+
+                obj._addNewLocation = function(){
+                    addNewLocation();
+                }
+
+                obj._load = function(){
+                    getAllContractLocations();
+                }
+
+                return obj;
+            }
+
             function getAllInterestRates(){
                 SettingsService.getAllInterestRates(RATE_TYPES.INTEREST_RATE).then(function(result){
                     vm.interest.records = result.data;
@@ -100,6 +118,12 @@
                 SettingsService.getAllInterestRates(RATE_TYPES.DOCUMENT_CHARGE_RATE).then(function(result){
                     vm.docCharge.records = result.data;
                 })
+            }
+
+            function getAllContractLocations(){
+                ContractsService.getAllLocations().then(function(result){
+                    vm.location.records = result.data;
+                });
             }
 
             function openAddNewInterestDialog(){
@@ -119,6 +143,13 @@
             function openAddNewDocumentChargeDialog(){
                 ngDialog.open({
                     template: 'app-components/settings/settings.add.docCharge.view.html',
+                    scope: $scope
+                });
+            }
+
+            function openAddLocationDialog(){
+                ngDialog.open({
+                    template: 'app-components/settings/settings.add.location.view.html',
                     scope: $scope
                 });
             }
@@ -165,6 +196,20 @@
                 })
             }
 
+            function addNewLocation(){
+                ContractsService.addNewLocation({ Location: vm.location.name, Code: vm.location.code }).then(function(result){
+                    if(result.data){
+                        toastr.success('Location added successfully', { timeOut: 3000 });
+                        ngDialog.close();
+                        vm.location._load();
+                    }
+                }, function(error){
+                    debugger;
+                    toastr.error('Failed adding location', { timeOut: 3000 });
+                    ngDialog.close();
+                })
+            }
+
             function onLoad(){
                 debugger;
                 vm = $scope;
@@ -172,10 +217,12 @@
                 vm.interest = angular.extend(vm.interest || {}, getInterestRateExtender());
                 vm.latefee = angular.extend(vm.latefee || {}, getLateFeeRateExtender());
                 vm.docCharge = angular.extend(vm.docCharge || {}, getDocChargeRateExtender());
+                vm.location = angular.extend(vm.location || {}, getLocationExtender());
 
                 vm.interest._load();
                 vm.latefee._load();
                 vm.docCharge._load();
+                vm.location._load();
             }
 
             onLoad();

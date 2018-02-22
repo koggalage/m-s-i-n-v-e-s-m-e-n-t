@@ -54,6 +54,18 @@
         this.getDocumentChargeReport = function(from, to){
             return $http.get(serviceBase + '/GetDocumentChargeReport?from='+ from +'&to=' + to);
         };
+
+        this.getAllLocations = function(){
+            return $http.get(serviceBase + '/GetAllLocations');
+        };
+
+        this.addNewLocation = function(location){
+            return $http.post(serviceBase + '/AddContractLocation', location);
+        };
+
+        this.generateContractNumber = function(code){
+            return $http.get(serviceBase + '/GenerateContractNumber?code=' + code);
+        };
     }
 
 })();

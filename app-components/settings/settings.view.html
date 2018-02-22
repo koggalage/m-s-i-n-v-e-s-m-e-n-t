@@ -110,6 +110,38 @@
                 </div>
             </div>
 
+
+            <div class="col-lg-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3>Locations &nbsp;<a href="" ng-click="location._openAddLocationDialog()"><i class="fa fa-plus-circle fa-1x"></i></a></h3>
+                    </div>
+                    <div class="panel-body">
+
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Location</th>
+                                    <th>Code</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in location.records">
+                                    <td>{{ item.location }}</td>
+                                    <td>{{ item.code }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+
         </div>
 
 

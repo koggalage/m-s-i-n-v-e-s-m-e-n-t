@@ -1,0 +1,25 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <h4 class="modal-title">Add New Location</h4>
+    </div>
+    <div class="modal-body" ng-form="_form">
+
+        <div role="form">
+
+            <div class="form-group">
+                <label>Location</label>
+                <input class="form-control" name="location" ng-model="location.name" required type="text">
+            </div>
+
+            <div class="form-group">
+                <label>Code</label>
+                <input class="form-control" name="code" ng-model="location.code" required type="text">
+            </div>
+
+            <button class="btn btn-primary" type="submit" ng-disabled="!_form.$dirty || _form.$invalid" 
+                ng-click="location._addNewLocation()">Add</button>
+
+        </div>
+
+    </div>
+</div>

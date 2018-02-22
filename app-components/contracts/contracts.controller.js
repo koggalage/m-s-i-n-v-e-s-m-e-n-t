@@ -38,9 +38,32 @@
                 GetBrokerExistency(obj.contract.nic);
             };
 
+            obj._loadLocations = function(){
+                loadLocations();
+            }
+
+            obj._generateContractNumber = function(){
+                generateContractNumber();
+            }
+
             return obj;
         }
 
+        function loadLocations(){
+            ContractsService.getAllLocations().then(function(result){
+                vm.contracts.locations = result.data;
+            });
+        }
+
+        function generateContractNumber(){
+            debugger;
+            var code = vm.contracts.contract.location;
+
+            ContractsService.generateContractNumber(code.code).then(function(result){
+                debugger;
+                vm.contracts.contract.ContractNo = result.data;
+            });
+        }
 
         // function OpenBrokerPopup() {
         //     ngDialog.open({
@@ -294,6 +317,8 @@
             loadCustomers();
             loadBrokers();
             loadGuarantors();
+
+            vm.contracts._loadLocations();
         }
 
         onLoad();
