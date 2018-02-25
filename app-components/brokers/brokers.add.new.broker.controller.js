@@ -5,9 +5,9 @@
         .module('app')
         .controller('AddNewBrokerController', AddNewBrokerController);
 
-    AddNewBrokerController.$inject = ['$scope', 'AddNewBrokerService']
+    AddNewBrokerController.$inject = ['$scope', 'AddNewBrokerService', 'ngDialog']
 
-    function AddNewBrokerController($scope, AddNewBrokerService) {
+    function AddNewBrokerController($scope, AddNewBrokerService, ngDialog) {
 
         var vm = {};
         
@@ -31,9 +31,11 @@
             AddNewBrokerService.createBroker(broker).then(function (result) {
                 if (result.data == true) {
                     toastr.success('Broker created successfully', { timeOut: 3000 });
+                    ngDialog.close();
                 }
             }, function (error) {
                 toastr.error('Failed creating Broker', { timeOut: 3000 });
+                ngDialog.close();
             });
         }
 

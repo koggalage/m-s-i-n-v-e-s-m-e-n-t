@@ -5,9 +5,9 @@
         .module('app')
         .controller('AddNewGuarantorController', AddNewGuarantorController);
 
-    AddNewGuarantorController.$inject = ['$scope', 'AddNewGuarantorService']
+    AddNewGuarantorController.$inject = ['$scope', 'AddNewGuarantorService', 'ngDialog']
 
-    function AddNewGuarantorController($scope, AddNewGuarantorService) {
+    function AddNewGuarantorController($scope, AddNewGuarantorService, ngDialog) {
 
         var vm = {};
 
@@ -31,9 +31,11 @@
             AddNewGuarantorService.createGuarantor(guarantor).then(function (result) {
                 if (result.data == true) {
                     toastr.success('Guarantor created successfully', { timeOut: 3000 });
+                    ngDialog.close();
                 }
             }, function (error) {
                 toastr.error('Failed creating Guarantor', { timeOut: 3000 });
+                ngDialog.close();
             });
         }
 
