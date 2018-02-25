@@ -4,7 +4,7 @@
         <div class="row">
             <div class="panel panel-default">
 
-                <div class="panel-heading">
+                <div class="panel-heading" style="background:#2c4a68; color:white">
                     <h3>Contract instalments</h3>
                 </div>
                 <div class="panel-body">
@@ -34,11 +34,11 @@
                           </tfoot>
                         <tbody>
                             <tr ng-repeat="item in contract.instalments">
-                                <td>{{ item.dueDate | date : 'MM/dd/yyyy' }}</td>
+                                <td>{{ item.dueDate | date }}</td>
                                 <td>{{ item.paidAmount }}</td>
                                 <td>{{ item.unsettleAmount }}</td>
                                 <td>{{ item.lateDays }}</td>
-                                <td>{{ item.paidDate | date : 'MM/dd/yyyy' }}</td>
+                                <td>{{ item.paidDate | date }}</td>
                             </tr>
 
                         </tbody>

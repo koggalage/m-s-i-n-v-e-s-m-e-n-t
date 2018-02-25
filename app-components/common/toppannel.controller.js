@@ -5,9 +5,9 @@
     .module('app')
     .controller('TopPannelController', TopPannelController);
 
-    TopPannelController.$inject = ['$scope', 'ContractsService', '$location'];
+    TopPannelController.$inject = ['$scope', 'ContractsService', '$location', 'AuthenticationService'];
 
-    function TopPannelController($scope, ContractsService, $location){
+    function TopPannelController($scope, ContractsService, $location, AuthenticationService){
 
         $scope.searchString = '';
 
@@ -21,6 +21,11 @@
             },function(error){
 
             });
+        }
+
+        $scope.logout = function(){
+            AuthenticationService.logOut();
+            $location.path('/sessions/new');
         }
 
     };

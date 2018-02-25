@@ -6,8 +6,6 @@
     .factory('domain', ['$location', function ($location) {
     var host = $location.host();
     
-    debugger;
-    
     if (host.indexOf('.') < 0) 
         return "";
     else
