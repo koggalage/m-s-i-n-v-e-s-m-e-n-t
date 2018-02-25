@@ -8,7 +8,6 @@
     SessionsController.$inject = ['$scope', '$location', 'AuthenticationService'];
 
     function SessionsController($scope, $location, AuthenticationService){
-        //debugger;
 
         $scope.loginData = {
             userName: "",

@@ -59,7 +59,7 @@
         function GetVehicleNoByCustomerId(customerId) {
             ContractsService.getVehicleNoByCustomerId(customerId).then(function (result) {
                 $scope.vehicleNumbersOfOpenContracts = result.data;
-                $scope.contractId = result.data[0].id;
+                //$scope.contractId = result.data[0].id;
             }, function () {
                 toastr.error('Failed Loading Vehicle Numbers for Customer!', { timeOut: 3000 });
             });
@@ -88,6 +88,10 @@
             $scope.hideCustomerNICs = true;
         };
 
+        $scope.OnVehicleNumberChange = function (contractId) {
+            $scope.contractId = contractId;            
+        };
+
         //File Upload
         // GET THE FILE INFORMATION.
         $scope.getFileDetails = function (e) {
@@ -111,23 +115,33 @@
             //FILL FormData WITH FILE DETAILS.
             var contractId = $scope.contractId;
 
-            // var itemName = $scope.itemName;
-            // var itemPrice = $scope.itemPrice;
-            // var itemType = $scope.itemType;
-
-
-            for (var i in $scope.files) {
-                data.append("uploadedFile", $scope.files[i]);
+            if (contractId == null) {
+                toastr.error('Please select a contract!', { timeOut: 3000 });
+            } else {
+                for (var i in $scope.files) {
+                    data.append("uploadedFile", $scope.files[i]);
+                }
+    
+                // ADD LISTENERS.
+                var objXhr = new XMLHttpRequest();
+                objXhr.addEventListener("progress", updateProgress, false);
+                objXhr.addEventListener("load", transferComplete, false);
+                objXhr.addEventListener("load", reqListener);
+                objXhr.open("POST", "http://localhost:53438/api/Contract/UplaoadFile?contractId=" + contractId);
+                objXhr.send(data);
             }
-
-            // ADD LISTENERS.
-            var objXhr = new XMLHttpRequest();
-            objXhr.addEventListener("progress", updateProgress, false);
-            objXhr.addEventListener("load", transferComplete, false);
-
-            objXhr.open("POST", "http://localhost:53438/api/Contract/UplaoadFile?contractId=" + contractId);
-            objXhr.send(data);
         }
+
+        function reqListener () {
+            console.log(this.response);
+            var responseText = this.response;
+            responseText = responseText.replace(/['"]+/g, '');
+            if (responseText == "1 Files Uploaded Successfully") {
+                toastr.success('File uploaded successfully', { timeOut: 3000 });             
+            } else {
+                toastr.error('Failed to upload the file!', { timeOut: 3000 });                
+            }
+          }
 
         // UPDATE PROGRESS BAR.
         function updateProgress(e) {

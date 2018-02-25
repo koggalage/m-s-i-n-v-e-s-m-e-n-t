@@ -204,14 +204,12 @@
                         vm.location._load();
                     }
                 }, function(error){
-                    debugger;
                     toastr.error('Failed adding location', { timeOut: 3000 });
                     ngDialog.close();
                 })
             }
 
             function onLoad(){
-                debugger;
                 vm = $scope;
 
                 vm.interest = angular.extend(vm.interest || {}, getInterestRateExtender());

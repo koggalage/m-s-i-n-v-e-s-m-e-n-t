@@ -56,11 +56,9 @@
         }
 
         function generateContractNumber(){
-            debugger;
             var code = vm.contracts.contract.location;
 
             ContractsService.generateContractNumber(code.code).then(function(result){
-                debugger;
                 vm.contracts.contract.ContractNo = result.data;
             });
         }

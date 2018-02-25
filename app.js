@@ -24,7 +24,6 @@
 
     config.$inject = ['$stateProvider', '$urlRouterProvider'];
     function config($stateProvider, $urlRouterProvider){
-        debugger;
         //$urlRouterProvider.otherwise('/app');
         $urlRouterProvider.otherwise('/sessions/new');
         
@@ -138,7 +137,6 @@
 
     // run.$inject = ['$rootScope', '$location', '$http', 'AuthenticationService'];
     // function run($rootScope, $location, $http, AuthenticationService){
-    //     debugger;
     //     // $rootScope.isUserLoggedIn = function () {
     //     //     if ($rootScope.globals.currentUser) {
     //     //         return true;
