@@ -66,6 +66,9 @@
           });
 
         $scope.completeCustomerNICs = function (string) {
+            if (string == null || string == "" || string == undefined) {
+                toastr.error('Please enter a valid NIC Number!', { timeOut: 3000 });
+            } else {
             GetCustomerExistency(string);
             $scope.hideCustomerNICs = false;
             var output = [];
@@ -75,6 +78,7 @@
                 }
             });
             $scope.filterNICsCustomer = output;
+        }
         };
 
         $scope.fillTextboxCustomerNICs = function (string) {

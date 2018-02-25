@@ -72,15 +72,19 @@
         });
 
         $scope.completeCustomerNICs = function (string) {
-            GetCustomerExistency(string);
-            $scope.hideCustomerNICs = false;
-            var output = [];
-            angular.forEach($scope.customerNICs, function (nic) {
-                if (nic.toLowerCase().indexOf(string.toLowerCase()) >= 0) {
-                    output.push(nic);
-                }
-            });
-            $scope.filterNICsCustomer = output;
+            if (string == null || string == "" || string == undefined) {
+                toastr.error('Please enter a valid NIC Number!', { timeOut: 3000 });
+            } else {
+                GetCustomerExistency(string);
+                $scope.hideCustomerNICs = false;
+                var output = [];
+                angular.forEach($scope.customerNICs, function (nic) {
+                    if (nic.toLowerCase().indexOf(string.toLowerCase()) >= 0) {
+                        output.push(nic);
+                    }
+                });
+                $scope.filterNICsCustomer = output;
+            }
         };
 
         $scope.fillTextboxCustomerNICs = function (string) {
@@ -89,7 +93,7 @@
         };
 
         $scope.OnVehicleNumberChange = function (contractId) {
-            $scope.contractId = contractId;            
+            $scope.contractId = contractId;
         };
 
         //File Upload
@@ -121,7 +125,7 @@
                 for (var i in $scope.files) {
                     data.append("uploadedFile", $scope.files[i]);
                 }
-    
+
                 // ADD LISTENERS.
                 var objXhr = new XMLHttpRequest();
                 objXhr.addEventListener("progress", updateProgress, false);
@@ -132,16 +136,16 @@
             }
         }
 
-        function reqListener () {
+        function reqListener() {
             console.log(this.response);
             var responseText = this.response;
             responseText = responseText.replace(/['"]+/g, '');
             if (responseText == "1 Files Uploaded Successfully") {
-                toastr.success('File uploaded successfully', { timeOut: 3000 });             
+                toastr.success('File uploaded successfully', { timeOut: 3000 });
             } else {
-                toastr.error('Failed to upload the file!', { timeOut: 3000 });                
+                toastr.error('Failed to upload the file!', { timeOut: 3000 });
             }
-          }
+        }
 
         // UPDATE PROGRESS BAR.
         function updateProgress(e) {

@@ -26,7 +26,7 @@
                 GetMonthlyInstallment(obj.contract);
             };
 
-            obj._getDocumentCharge = function(){
+            obj._getDocumentCharge = function () {
                 GetDocumentCharge(obj.contract);
             };
 
@@ -38,27 +38,27 @@
                 GetBrokerExistency(obj.contract.nic);
             };
 
-            obj._loadLocations = function(){
+            obj._loadLocations = function () {
                 loadLocations();
             }
 
-            obj._generateContractNumber = function(){
+            obj._generateContractNumber = function () {
                 generateContractNumber();
             }
 
             return obj;
         }
 
-        function loadLocations(){
-            ContractsService.getAllLocations().then(function(result){
+        function loadLocations() {
+            ContractsService.getAllLocations().then(function (result) {
                 vm.contracts.locations = result.data;
             });
         }
 
-        function generateContractNumber(){
+        function generateContractNumber() {
             var code = vm.contracts.contract.location;
 
-            ContractsService.generateContractNumber(code.code).then(function(result){
+            ContractsService.generateContractNumber(code.code).then(function (result) {
                 vm.contracts.contract.ContractNo = result.data;
             });
         }
@@ -221,15 +221,19 @@
 
 
         $scope.completeCustomerNICs = function (string) {
-            GetCustomerExistency(string);
-            $scope.hideCustomerNICs = false;
-            var output = [];
-            angular.forEach($scope.customerNICs, function (nic) {
-                if (nic.toLowerCase().indexOf(string.toLowerCase()) >= 0) {
-                    output.push(nic);
-                }
-            });
-            $scope.filterNICsCustomer = output;
+            if (string == null || string == "" || string == undefined) {
+                toastr.error('Please enter a valid NIC Number!', { timeOut: 3000 });
+            } else {
+                GetCustomerExistency(string);
+                $scope.hideCustomerNICs = false;
+                var output = [];
+                angular.forEach($scope.customerNICs, function (nic) {
+                    if (nic.toLowerCase().indexOf(string.toLowerCase()) >= 0) {
+                        output.push(nic);
+                    }
+                });
+                $scope.filterNICsCustomer = output;
+            }
         };
 
         $scope.fillTextboxCustomerNICs = function (string) {
@@ -238,29 +242,35 @@
         };
 
         $scope.completeBrokerNICs = function (string) {
-            GetBrokerExistency(string);
-            $scope.hideBrokerNICs = false;
-            var output = [];
-            angular.forEach($scope.brokerNICs, function (nic) {
-                if (nic.toLowerCase().indexOf(string.toLowerCase()) >= 0) {
-                    output.push(nic);
-                }
-            });
-            $scope.filterNICsBroker = output;
-
+            if (string == null || string == "" || string == undefined) {
+                toastr.error('Please enter a valid NIC Number!', { timeOut: 3000 });
+            } else {
+                GetBrokerExistency(string);
+                $scope.hideBrokerNICs = false;
+                var output = [];
+                angular.forEach($scope.brokerNICs, function (nic) {
+                    if (nic.toLowerCase().indexOf(string.toLowerCase()) >= 0) {
+                        output.push(nic);
+                    }
+                });
+                $scope.filterNICsBroker = output;
+            }
         };
 
         $scope.completeGuarantorNICs = function (nicGuarantor) {
-            GetGuarantorExistency(nicGuarantor);
-            $scope.hideGuarantorNICs = false;
-            var output = [];
-            angular.forEach($scope.guarantorNICs, function (nic) {
-                if (nic.toLowerCase().indexOf(nicGuarantor.toLowerCase()) >= 0) {
-                    output.push(nic);
-                }
-            });
-            $scope.filterNICsGuarantor = output;
-
+            if (nicGuarantor == null || nicGuarantor == "" || nicGuarantor == undefined) {
+                toastr.error('Please enter a valid NIC Number!', { timeOut: 3000 });
+            } else {
+                GetGuarantorExistency(nicGuarantor);
+                $scope.hideGuarantorNICs = false;
+                var output = [];
+                angular.forEach($scope.guarantorNICs, function (nic) {
+                    if (nic.toLowerCase().indexOf(nicGuarantor.toLowerCase()) >= 0) {
+                        output.push(nic);
+                    }
+                });
+                $scope.filterNICsGuarantor = output;
+            }
         };
 
         $scope.fillTextboxBrokerNICs = function (string) {
