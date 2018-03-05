@@ -5,8 +5,8 @@
         .module('app')
         .controller('ContractsController', ContractsController);
 
-    ContractsController.$inject = ['$scope', 'ngDialog', 'ContractsService', 'AddNewBrokerService', 'CustomerService', 'AddNewGuarantorService'];
-    function ContractsController($scope, ngDialog, ContractsService, AddNewBrokerService, CustomerService, AddNewGuarantorService) {
+    ContractsController.$inject = ['$scope', 'ngDialog', 'ContractsService', 'AddNewBrokerService', 'CustomerService', 'AddNewGuarantorService', '$stateParams',];
+    function ContractsController($scope, ngDialog, ContractsService, AddNewBrokerService, CustomerService, AddNewGuarantorService, $stateParams) {
 
         var vm = {};
         $scope.showBrokerNotExistWarning = false;
@@ -85,7 +85,7 @@
         }
 
         function loadCustomers() {
-
+            $scope.nicCustomer = $stateParams.customer_id;
             ContractsService.getCustomerDetails().then(function (result) {
                 $scope.contractCustomerList = result;
 

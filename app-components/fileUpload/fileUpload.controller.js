@@ -99,12 +99,14 @@
         //File Upload
         // GET THE FILE INFORMATION.
         $scope.getFileDetails = function (e) {
-
+            
+            var fg = document.getElementById('file').files[0].name;
             $scope.files = [];
             $scope.$apply(function () {
 
                 // STORE THE FILE OBJECT IN AN ARRAY.
                 for (var i = 0; i < e.files.length; i++) {
+                   var x = e.files[i].fileName;
                     $scope.files.push(e.files[i])
                 }
 

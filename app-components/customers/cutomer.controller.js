@@ -5,8 +5,8 @@
         .module('app')
         .controller('CustomersController', CustomersController);
 
-    CustomersController.$inject = ['$scope', 'CustomerService'];
-    function CustomersController($scope, CustomerService) {
+    CustomersController.$inject = ['$scope', 'CustomerService', '$state'];
+    function CustomersController($scope, CustomerService, $state) {
 
         var vm = {};
 
@@ -32,8 +32,9 @@
 
         function CreateCustomer(customer) {
             CustomerService.createCustomer(customer).then(function (result) {
-                if (result.data == true) {
+                if (result.data) {
                     toastr.success('Customer created successfully', { timeOut: 3000 });
+                    $state.transitionTo('app.contract', {customer_id:result.data});
                 }
             }, function (error) {
                 toastr.error('Failed creating customer', { timeOut: 3000 });
