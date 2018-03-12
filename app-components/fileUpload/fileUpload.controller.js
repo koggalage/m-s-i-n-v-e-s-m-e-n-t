@@ -5,9 +5,9 @@
         .module('app')
         .controller('FileController', FileController);
 
-    FileController.$inject = ['$scope', 'ContractsService', 'CustomerService'];
+    FileController.$inject = ['$scope', 'ContractsService', 'CustomerService', '$stateParams'];
 
-    function FileController($scope, ContractsService, CustomerService) {
+    function FileController($scope, ContractsService, CustomerService, $stateParams) {
         var vm = {};
 
         function getFilesExtender() {
@@ -21,9 +21,10 @@
         }
 
         function loadCustomers() {
-
+            $scope.nicCustomer = $stateParams.customer_nic;
+            GetCustomerExistency($scope.nicCustomer);
             ContractsService.getCustomersForOpenContracts().then(function (result) {
-                console.log("result", result);
+                
                 $scope.contractCustomerList = result;
 
                 var customerNICs = [];

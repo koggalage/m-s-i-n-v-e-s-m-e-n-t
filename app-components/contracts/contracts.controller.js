@@ -5,8 +5,8 @@
         .module('app')
         .controller('ContractsController', ContractsController);
 
-    ContractsController.$inject = ['$scope', 'ngDialog', 'ContractsService', 'AddNewBrokerService', 'CustomerService', 'AddNewGuarantorService', '$stateParams',];
-    function ContractsController($scope, ngDialog, ContractsService, AddNewBrokerService, CustomerService, AddNewGuarantorService, $stateParams) {
+    ContractsController.$inject = ['$scope', 'ngDialog', 'ContractsService', 'AddNewBrokerService', 'CustomerService', 'AddNewGuarantorService', '$stateParams','$state'];
+    function ContractsController($scope, ngDialog, ContractsService, AddNewBrokerService, CustomerService, AddNewGuarantorService, $stateParams, $state) {
 
         var vm = {};
         $scope.showBrokerNotExistWarning = false;
@@ -76,9 +76,8 @@
         function CreateContract(contract) {
             console.log("contract", contract);
             ContractsService.createContract(contract).then(function (result) {
-                console.log("result", result);
-
                 toastr.success('New Contract Created Successfully!', { timeOut: 3000 });
+                $state.transitionTo('app.customer_file_upload', {customer_nic:result.data});           
             }, function (error) {
                 toastr.error(error.data.exceptionMessage, { timeOut: 3000 });
             })
@@ -86,6 +85,7 @@
 
         function loadCustomers() {
             $scope.nicCustomer = $stateParams.customer_id;
+            GetCustomerExistency($scope.nicCustomer);
             ContractsService.getCustomerDetails().then(function (result) {
                 $scope.contractCustomerList = result;
 
@@ -301,15 +301,27 @@
         $scope.onCreateBrokerClick = function () {
             ngDialog.open({
                 template: 'app-components/brokers/brokers.add.new.broker.view.html',
-                controller: 'AddNewBrokerController'
+                controller: 'AddNewBrokerController',
+                scope: $scope,
+                closeByDocument: false,
+                data: { }
+            }).closePromise.then(function(data){
+                $scope.nicBroker = data.value;
             });
         };
 
         $scope.onCreateGuarantorClick = function () {
             ngDialog.open({
                 template: 'app-components/guarantors/guarantors.add.new.guarantor.view.html',
-                controller: 'AddNewGuarantorController'
+                controller: 'AddNewGuarantorController',
+                scope: $scope,
+                closeByDocument: false,
+                data: { }
+            }).closePromise.then(function(data){
+                $scope.nicGuarantor = data.value;
             });
+
+            
         };
 
         function onLoad() {

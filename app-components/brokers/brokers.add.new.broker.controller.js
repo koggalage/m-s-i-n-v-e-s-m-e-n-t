@@ -31,7 +31,7 @@
             AddNewBrokerService.createBroker(broker).then(function (result) {
                 if (result.data == true) {
                     toastr.success('Broker created successfully', { timeOut: 3000 });
-                    ngDialog.close();
+                    $scope.closeThisDialog(broker.NIC);
                 }
             }, function (error) {
                 toastr.error('Failed creating Broker', { timeOut: 3000 });

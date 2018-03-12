@@ -121,6 +121,12 @@
                 controller: 'FileController'
             })
             
+            .state('app.customer_file_upload',{
+                url:'/file_upload/:customer_nic',
+                templateUrl:'/app-components/fileUpload/fileUpload.view.html',
+                controller: 'FileController'
+            })
+
             .state('app.settings',{
                 url:'/settings',
                 templateUrl:'/app-components/settings/settings.view.html',

@@ -31,7 +31,7 @@
             AddNewGuarantorService.createGuarantor(guarantor).then(function (result) {
                 if (result.data == true) {
                     toastr.success('Guarantor created successfully', { timeOut: 3000 });
-                    ngDialog.close();
+                    $scope.closeThisDialog(guarantor.NIC);
                 }
             }, function (error) {
                 toastr.error('Failed creating Guarantor', { timeOut: 3000 });
