@@ -59,26 +59,26 @@
             });
         };
 
-        $scope.$watch('nicCustomer', function(newValues, oldValue) {
-            if(newValues != oldValue) {
+        $scope.$watch('nicCustomer', function (newValues, oldValue) {
+            if (newValues != oldValue) {
                 GetCustomerExistency(newValues);
             }
-          });
+        });
 
         $scope.completeCustomerNICs = function (string) {
             if (string == null || string == "" || string == undefined) {
                 toastr.error('Please enter a valid NIC Number!', { timeOut: 3000 });
             } else {
-            GetCustomerExistency(string);
-            $scope.hideCustomerNICs = false;
-            var output = [];
-            angular.forEach($scope.customerNICs, function (nic) {
-                if (nic.toLowerCase().indexOf(string.toLowerCase()) >= 0) {
-                    output.push(nic);
-                }
-            });
-            $scope.filterNICsCustomer = output;
-        }
+                GetCustomerExistency(string);
+                $scope.hideCustomerNICs = false;
+                var output = [];
+                angular.forEach($scope.customerNICs, function (nic) {
+                    if (nic.toLowerCase().indexOf(string.toLowerCase()) >= 0) {
+                        output.push(nic);
+                    }
+                });
+                $scope.filterNICsCustomer = output;
+            }
         };
 
         $scope.fillTextboxCustomerNICs = function (string) {
@@ -87,21 +87,20 @@
         };
 
 
-        function GetCurrentInstalmentDetails(contractId, paidDate)
-        {
-            InstalmentService.getCurrentInstalmentDetails(contractId, paidDate).then(function(result){
-                if(result.data){
+        function GetCurrentInstalmentDetails(contractId, paidDate) {
+            InstalmentService.getCurrentInstalmentDetails(contractId, paidDate).then(function (result) {
+                if (result.data) {
                     vm.instalments.instalment.DueDate = result.data.dueDate;
                 }
             })
         }
 
 
-        $scope.OnContractChange = function(contractId){
+        $scope.OnContractChange = function (contractId) {
             GetCurrentInstalmentDetails(contractId);
         }
-        
-        $scope.OnPaidDateChange = function(contractId, paidDate){
+
+        $scope.OnPaidDateChange = function (contractId, paidDate) {
             GetCurrentInstalmentDetails(contractId, paidDate)
         }
 

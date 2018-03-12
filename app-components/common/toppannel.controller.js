@@ -5,9 +5,9 @@
     .module('app')
     .controller('TopPannelController', TopPannelController);
 
-    TopPannelController.$inject = ['$scope', 'ContractsService', '$location', 'AuthenticationService'];
+    TopPannelController.$inject = ['$scope', 'ContractsService', '$location', 'AuthenticationService', '$window', '$localStorage', '$translate'];
 
-    function TopPannelController($scope, ContractsService, $location, AuthenticationService){
+    function TopPannelController($scope, ContractsService, $location, AuthenticationService, $window, $localStorage, $translate){
 
         $scope.searchString = '';
 
@@ -27,6 +27,13 @@
             AuthenticationService.logOut();
             $location.path('/sessions/new');
         }
+
+        $scope.setLan = function (lang) {
+            $translate.use(lang);
+            $scope.activeLangIcon = lang;
+            console.log('activeLangIcon', $scope.activeLangIcon);
+        };
+
 
     };
 

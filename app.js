@@ -11,7 +11,7 @@
 
     var app = angular.module('app',
                                     [
-                                        'ui.router', 'LocalStorageModule', 'ngDialog', 'bootstrapLightbox'
+                                        'ui.router', 'LocalStorageModule', 'ngDialog', 'bootstrapLightbox', 'pascalprecht.translate', 'ngStorage'
                                     ]
                                 )
                     .config(config)
@@ -22,8 +22,8 @@
         window._
     );                    
 
-    config.$inject = ['$stateProvider', '$urlRouterProvider'];
-    function config($stateProvider, $urlRouterProvider){
+    config.$inject = ['$stateProvider', '$urlRouterProvider', '$translateProvider'];
+    function config($stateProvider, $urlRouterProvider, $translateProvider){
         //$urlRouterProvider.otherwise('/app');
         $urlRouterProvider.otherwise('/sessions/new');
         
@@ -132,6 +132,73 @@
                 templateUrl:'/app-components/settings/settings.view.html',
                 controller: 'SettingsController'
             });
+
+
+
+            //tmhDynamicLocaleProvider.localeLocationPattern('./app-scripts/globalization/angular-locale_{{locale}}.js');
+
+            // $translateProvider.useSanitizeValueStrategy(null);
+            // $translateProvider.useStaticFilesLoader({
+            //     prefix: './app-content/i18n/resource.',
+            //     suffix: '.json'
+            // });
+            // $translateProvider.preferredLanguage('en');
+
+            $translateProvider.translations('en', {
+                Add_New_Customer: 'Add new customer',
+                NIC: 'NIC:',
+                Name: 'Name:',
+                Address: 'Address:',
+                Mobile_No: 'Mobile No:',
+                Occupation: 'Occupation:',
+                Description: 'Description:',
+                Create_New_Contract: "Create new contract",
+                Customer_NIC: 'Customer NIC:',
+                Amount: 'Amount:',
+                Document_Charge: 'Document Charge:',
+                No_Of_Installments: 'No of installments:',
+                Monthly_Installment: 'Monthly Installment:',
+                Vehicle_No: 'Vehicle No:',
+                NIC_Of_The_Guarantor: 'NIC of the guarantor:',
+                NIC_Of_The_Broker: 'NIC of the broker:',
+                Contract_Process_Location: 'Contract process Location:',
+                Contract_Number: 'Contract Number:',
+                Upload_Documents: 'Upload Documents',
+                Instalment: 'Instalment:',
+                Due_Date: 'Due Date:',
+                Paid_Date: 'Paid Date:',
+                Paid_Amount: 'Paid amount:',
+                Save: 'Save:'
+
+              });
+              $translateProvider.translations('nb', {
+                Add_New_Customer: 'අලුත් ණයකරුවෙකු ඇතුළත් කිරීම',
+                NIC: 'ජා.හැ.අං:',
+                Name: 'නම:',
+                Address: 'ලිපිනය:',
+                Mobile_No: 'දුරකථන අංකය:',
+                Occupation: 'රැකියාව:',
+                Description: 'වෙනත් විස්තර:',
+                Create_New_Contract: "අලුත් ගිවිසුමක් ඇතුළත් කිරීම",
+                Customer_NIC: 'ණයකරුගේ ජා.හැ.අං:',
+                Amount: 'මුළු ණය මුදල:',
+                Document_Charge: 'ලිපිගොණු වියදම:',
+                No_Of_Installments: 'වාරික ගණන:',
+                Monthly_Installment: 'මාසික වාරිකය:',
+                Vehicle_No: 'වාහන අංකය:',
+                NIC_Of_The_Guarantor: 'ඇපකරුගේ ජා.හැ.අං:',
+                NIC_Of_The_Broker: 'තැරැව්කරුගේ ජා.හැ.අං:',
+                Contract_Process_Location: 'කාර්යාලය අයත් නගරය:',
+                Contract_Number: 'ගිවිසුම් අංකය:',
+                Upload_Documents: 'ඡායාරූප ඇතුළත් කිරීම:',
+                Instalment: 'වාරික ගෙවීම:',
+                Due_Date: 'වාරිකය ගෙවීමට නියමිත දිනය:',
+                Paid_Date: 'වාරිකය ගෙවූ දිනය',
+                Paid_Amount: 'ගෙවූ වාරික මුදල:',
+                Save: 'දත්ත ඇතුළත් කරන්න:'
+              });
+
+              $translateProvider.preferredLanguage('en');
     }
 
     
